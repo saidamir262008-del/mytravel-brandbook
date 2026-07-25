@@ -10,7 +10,7 @@
 |---|---|
 | [Логотип](https://saidamir262008-del.github.io/mytravel-brandbook/) | Утверждённый логотип: 8 компоновок, 15 цветовых схем, иконки, анимация, правила. Главная страница |
 | [Архив выбора](https://saidamir262008-del.github.io/mytravel-brandbook/choose.html) | 24 варианта, из которых выбирали |
-| [Брендбук](https://saidamir262008-del.github.io/mytravel-brandbook/brand/brandbook.html) | Цвет, типографика, иконки, применение, доступность. Один самодостаточный файл |
+| [Брендбук](https://saidamir262008-del.github.io/mytravel-brandbook/brandbook.html) | Цвет, типографика, иконки, применение, доступность. Один самодостаточный файл |
 | [Компоненты интерфейса](https://saidamir262008-del.github.io/mytravel-brandbook/brand/components/ui-kit.html) | Живые компоненты: поиск, карточки результата, форма пассажира, оплата, ваучер под печать |
 
 ## Логотип
