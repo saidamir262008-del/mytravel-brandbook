@@ -1,0 +1,36 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Сборка сайта — myTravel</title><style>
+:root{--paper:#fbf6ee;--surface:#fff;--fg:#2a211c;--muted:#665d53;--line:#e6ded1;
+ --accent:#a81e2d}
+@media (prefers-color-scheme:dark){:root{--paper:#1b1512;--surface:#241c18;
+ --fg:#f3ede3;--muted:#c2b6a6;--line:#3b302a;--accent:#d9525c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--fg);
+ font:400 16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:82ch;margin:0 auto;padding:28px 24px 80px}
+nav{font-size:14px;color:var(--muted);margin:0 0 20px}
+nav a{color:var(--fg)}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px}
+.lede{color:var(--muted);margin:0 0 26px;max-width:66ch}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+ margin:34px 0 12px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+code{font-family:ui-monospace,"SF Mono",monospace;font-size:13px}
+td b{display:block;margin-bottom:2px}
+td span{color:var(--muted);font-size:13px}
+.size{white-space:nowrap;color:var(--muted);font-family:ui-monospace,monospace;
+ font-size:12px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+ padding:14px 16px;font-size:14px;line-height:1.6;margin:22px 0 0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+ padding:12px 14px;overflow-x:auto;font-size:13px}
+</style></head><body><main><nav><a href="../../../">Брендбук myTravel</a> · <a href="../../">brand</a> · <a href="../">tools</a> · site</nav><h1>Сборка сайта</h1><p class="lede">Скрипты, которые собирают этот сайт: листинги папок, карту материалов и HTML-версии документов. Запускаются одной командой <code>./build-site.sh</code> из корня проекта — она же проверяет все ссылки и не даёт выложить сайт с битыми.</p><h2>Файлы</h2><div class="tablewrap"><table><thead><tr><th>Файл</th><th>Что делает</th><th>Размер</th></tr></thead><tbody><tr><td><code>build-listings.py</code></td><td><b>Листинги папок брендбука</b><span>Собирает index.html для logo, icons, tokens, fonts, components, docs и tools: таблицы файлов с предпросмотром SVG и пояснением по каждому.</span></td><td class="size">65.4 КБ · <a href="build-listings.py" download>скачать</a></td></tr><tr><td><code>build_logo_lab_index.py</code></td><td><b>Листинги лаборатории знака</b><span>Собирает страницы восьми направлений поиска знака и папки с анимациями, с превью в трёх размерах и разбором вариантов.</span></td><td class="size">71.6 КБ · <a href="build_logo_lab_index.py" download>скачать</a></td></tr><tr><td><code>build-all-map.py</code></td><td><b>Карта всех материалов</b><span>Собирает all.html: разделы по смыслу, ссылки с пояснениями и фактические числа, посчитанные обходом дерева.</span></td><td class="size">46.1 КБ · <a href="build-all-map.py" download>скачать</a></td></tr><tr><td><code>mddocs.py</code></td><td><b>Документы из markdown в HTML</b><span>Браузер не показывает .md, а скачивает его. Конвертер поддерживает ровно то, что есть в документах: заголовки, таблицы, списки, код, цитаты.</span></td><td class="size">9.0 КБ · <a href="mddocs.py" download>скачать</a></td></tr><tr><td><code>build-logo-tools-index.py</code></td><td><b>Этот листинг</b><span>Собирает страницы папок tools/logo и tools/site.</span></td><td class="size">10.5 КБ · <a href="build-logo-tools-index.py" download>скачать</a></td></tr></tbody></table></div><h2>Порядок</h2><pre>1. брендбук и страница логотипа
+2. документы из markdown, листинги папок
+3. копирование материалов в _site
+4. карта материалов
+5. проверка всех ссылок</pre><p class="note"><b>Почему листинги собираются в исходниках.</b> Копия сайта пересоздаётся при каждой сборке. Если генерировать страницы прямо в ней, они будут затёрты — на этом уже спотыкались.</p></main></body></html>

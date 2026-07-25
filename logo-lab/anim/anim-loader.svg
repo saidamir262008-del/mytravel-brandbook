@@ -2,16 +2,28 @@
 <title>myTravel</title>
 <desc>Логотип myTravel. Зацикленный индикатор ожидания: самолёт бесконечно идёт по взлётной полосе, за ним подтягивается гранатовая полоса. Слово статично.</desc>
 <style>
+  /* ПОКОЙ — база. Ровно исходный логотип: сплошная полоса, самолёт дома.
+     Это же видит любой рендерер, который читает CSS, но не умеет @keyframes
+     (librsvg, resvg, печать, PDF), и любой, кто просит меньше движения. */
   .mtl-runway path{fill:none;stroke:#a81e2d;stroke-width:23;stroke-linecap:round}
-  .mtl-track{opacity:.22}
-  .mtl-trail{animation-duration:2s;animation-timing-function:linear;animation-iteration-count:infinite}
-  .mtl-t1{stroke-dasharray:560 440;stroke-dashoffset:560;opacity:.28;animation-name:mtl-d1}
-  .mtl-t2{stroke-dasharray:300 700;stroke-dashoffset:300;opacity:.5;animation-name:mtl-d2}
-  .mtl-t3{stroke-dasharray:120 880;stroke-dashoffset:120;opacity:1;animation-name:mtl-d3}
-  .mtl-plane{fill:#a81e2d;opacity:0;transform-box:fill-box;transform-origin:50% 50%;
-    animation:mtl-fly 2s linear infinite,mtl-lift 2s linear infinite}
+  .mtl-trail{display:none}
+  .mtl-plane{fill:#a81e2d}
   .mtl-word{fill:#2a211c}
 
+  /* ОЖИДАНИЕ — включается только там, где движение уместно. */
+  @media (prefers-reduced-motion:no-preference){
+    .mtl-track{opacity:.22}
+    .mtl-trail{display:inline;animation-duration:2s;
+      animation-timing-function:linear;animation-iteration-count:infinite}
+    .mtl-t1{stroke-dasharray:560 440;stroke-dashoffset:560;opacity:.28;animation-name:mtl-d1}
+    .mtl-t2{stroke-dasharray:300 700;stroke-dashoffset:300;opacity:.5;animation-name:mtl-d2}
+    .mtl-t3{stroke-dasharray:120 880;stroke-dashoffset:120;opacity:1;animation-name:mtl-d3}
+    .mtl-plane{opacity:0;transform-box:fill-box;transform-origin:50% 50%;
+      animation:mtl-fly 2s linear infinite,mtl-lift 2s linear infinite}
+  }
+
+  /* Период штриха равен длине пути (pathLength=1000), поэтому кадр
+     при t=0 и при t=2s совпадает — стык бесшовный. */
   @keyframes mtl-d1{from{stroke-dashoffset:560}to{stroke-dashoffset:-440}}
   @keyframes mtl-d2{from{stroke-dashoffset:300}to{stroke-dashoffset:-700}}
   @keyframes mtl-d3{from{stroke-dashoffset:120}to{stroke-dashoffset:-880}}
@@ -20,7 +32,7 @@
     86%{opacity:1} 93%{opacity:.5} 100%{opacity:0}
   }
   @keyframes mtl-fly{
-0% { transform: translate(-776.39px,125.5px) rotate(39.52deg) scale(1) }
+  0% { transform: translate(-776.39px,125.5px) rotate(39.52deg) scale(1) }
   73.871% { transform: translate(-173.88px,125.5px) rotate(39.52deg) scale(1) }
   75.059% { transform: translate(-164.17px,123.47px) rotate(36.9deg) scale(1) }
   76.246% { transform: translate(-154.58px,120.7px) rotate(33.89deg) scale(1) }
@@ -47,12 +59,13 @@
   100% { transform: translate(0px,0px) rotate(0deg) scale(0.85) }
   }
 
-  /* Покой: полная полоса, самолёт дома — кадр в кадр исходный логотип. */
+  /* Явная гарантия покоя. */
   @media (prefers-reduced-motion:reduce){
     .mtl-track{opacity:1}
     .mtl-trail{display:none}
     .mtl-plane{animation:none;opacity:1;transform:none}
   }
+  /* Ручная заморозка: class="mtl-still" на корневом элементе svg. */
   .mtl-still .mtl-track{opacity:1}
   .mtl-still .mtl-trail{display:none}
   .mtl-still .mtl-plane{animation:none;opacity:1;transform:none}

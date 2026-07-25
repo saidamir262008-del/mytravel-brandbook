@@ -1,0 +1,37 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Генератор логотипа — myTravel</title><style>
+:root{--paper:#fbf6ee;--surface:#fff;--fg:#2a211c;--muted:#665d53;--line:#e6ded1;
+ --accent:#a81e2d}
+@media (prefers-color-scheme:dark){:root{--paper:#1b1512;--surface:#241c18;
+ --fg:#f3ede3;--muted:#c2b6a6;--line:#3b302a;--accent:#d9525c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--fg);
+ font:400 16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:82ch;margin:0 auto;padding:28px 24px 80px}
+nav{font-size:14px;color:var(--muted);margin:0 0 20px}
+nav a{color:var(--fg)}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px}
+.lede{color:var(--muted);margin:0 0 26px;max-width:66ch}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+ margin:34px 0 12px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+code{font-family:ui-monospace,"SF Mono",monospace;font-size:13px}
+td b{display:block;margin-bottom:2px}
+td span{color:var(--muted);font-size:13px}
+.size{white-space:nowrap;color:var(--muted);font-family:ui-monospace,monospace;
+ font-size:12px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+ padding:14px 16px;font-size:14px;line-height:1.6;margin:22px 0 0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+ padding:12px 14px;overflow-x:auto;font-size:13px}
+</style></head><body><main><nav><a href="../../../">Брендбук myTravel</a> · <a href="../../">brand</a> · <a href="../">tools</a> · logo</nav><h1>Генератор логотипа</h1><p class="lede">Логотип не нарисован в редакторе, а вычисляется: все восемь компоновок выводятся из одних и тех же величин. Поэтому его можно пересобрать, поменять пропорции или добавить новое положение, ничего не перерисовывая руками. Подробности — в <a href="README.md">README</a>.</p><h2>Файлы</h2><div class="tablewrap"><table><thead><tr><th>Файл</th><th>Что делает</th><th>Размер</th></tr></thead><tbody><tr><td><code>logo_system.py</code></td><td><b>Сама система</b><span>Слово, полоса, самолёт и восемь компоновок. Всё выводится из капитальной высоты, равной 100: полоса на 48 ниже базовой линии, толщина 23, отрыв +182 по горизонтали и −100 по вертикали.</span></td><td class="size">12.8 КБ · <a href="logo_system.py" download>скачать</a></td></tr><tr><td><code>pathbbox.py</code></td><td><b>Габариты путей без браузера</b><span>Считает фактические границы SVG-путей, включая кривые и дуги. Из них берётся viewBox — раньше он задавался на глаз, и часть логотипов молча обрезалась.</span></td><td class="size">7.0 КБ · <a href="pathbbox.py" download>скачать</a></td></tr><tr><td><code>glyphs.py</code></td><td><b>Доступ к отдельным глифам</b><span>Отдаёт контур каждой буквы с её метриками. Нужен, чтобы резать и подменять буквы, а не только набирать строку целиком.</span></td><td class="size">2.2 КБ · <a href="glyphs.py" download>скачать</a></td></tr><tr><td><code>emit.py</code></td><td><b>Выгрузка комплекта</b><span>Пишет все SVG в brand/logo/: восемь компоновок в четырёх версиях, плитки, фавикон и иконку приложения. Анимации не трогает.</span></td><td class="size">4.0 КБ · <a href="emit.py" download>скачать</a></td></tr><tr><td><code>guide.py</code></td><td><b>Страница-руководство</b><span>Собирает _logo.html: компоновки, 15 цветовых схем, иконки, анимации, правила и минимальные размеры.</span></td><td class="size">22.5 КБ · <a href="guide.py" download>скачать</a></td></tr><tr><td><code>raster.py</code></td><td><b>Растр через headless Chrome</b><span>Отдельных конвертеров на машине нет, а Chrome даёт ровно ту картинку, которую увидит получатель. Прозрачность сохраняется.</span></td><td class="size">2.1 КБ · <a href="raster.py" download>скачать</a></td></tr><tr><td><code>pack.py</code></td><td><b>Архив для пересылки</b><span>Собирает myTravel-logo.zip: SVG, PNG с прозрачным фоном, анимации и инструкцию.</span></td><td class="size">7.8 КБ · <a href="pack.py" download>скачать</a></td></tr><tr><td><code>SchibstedGrotesk.ttf</code></td><td><b>Шрифт словесного знака</b><span>Schibsted Grotesk, SIL Open Font License 1.1. Нужен только для пересборки: в готовых SVG текст уже в кривых.</span></td><td class="size">171.9 КБ · <a href="SchibstedGrotesk.ttf" download>скачать</a></td></tr><tr><td><code>IBMPlexSans.ttf</code></td><td><b>Шрифт дескриптора</b><span>IBM Plex Sans, SIL Open Font License 1.1.</span></td><td class="size">524.7 КБ · <a href="IBMPlexSans.ttf" download>скачать</a></td></tr><tr><td><code>README.md</code></td><td><b>Описание системы</b><span>Величины, инструкция запуска, что делать при смене цвета или шрифта и список граблей, на которые уже наступали.</span></td><td class="size">4.4 КБ · <a href="README.md" download>скачать</a></td></tr></tbody></table></div><h2>Как запустить</h2><pre>python3 -m venv venv
+./venv/bin/pip install fonttools brotli
+
+./venv/bin/python emit.py    # пересобрать SVG в brand/logo/
+./venv/bin/python guide.py   # пересобрать страницу-руководство
+./venv/bin/python pack.py    # собрать архив (для PNG нужен Chrome)</pre><p class="note"><b>Проверка при каждом запуске.</b> Пересборка сверяется с утверждённым файлом: расхождение должно быть 0.0000. Если появилось — значит поехали величины системы, и это надо чинить до выгрузки.</p></main></body></html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Документация myTravel — файлы папки docs</title>
+<style>
+:root{
+  --bg:#fbf6ee; --ink:#2a211c; --accent:#a81e2d; --muted:#665d53;
+  --line:#e6ded1; --card:#fffdf8;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#1b1512; --ink:#f3ede3; --accent:#d9525c; --muted:#a89a8c;
+    --line:#3b302a; --card:#221b17;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 20px 96px}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,summary:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;
+}
+.mono,code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.88em}
+
+.crumbs{
+  font-size:14px;color:var(--muted);margin:0 0 22px;
+  padding-bottom:14px;border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;
+}
+.crumbs .sep{opacity:.5}
+.crumbs strong{font-weight:600;color:var(--ink)}
+
+h1{font-size:26px;line-height:1.25;margin:0 0 10px;font-weight:650;letter-spacing:-.01em}
+.lead{margin:0 0 8px;max-width:66ch;color:var(--ink)}
+.sub{margin:0 0 30px;color:var(--muted);font-size:14px}
+h2{
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:650;margin:38px 0 14px;padding-top:14px;border-top:1px solid var(--line);
+}
+h2:first-of-type{border-top:0;padding-top:0}
+h3{font-size:15px;margin:0 0 4px;font-weight:600;word-break:break-word}
+.note{
+  margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--accent);
+  background:var(--card);border-radius:0 6px 6px 0;font-size:14px;color:var(--ink);
+}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px}
+th,td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{
+  font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);font-weight:650;white-space:nowrap;
+}
+td .why{color:var(--muted);font-size:13.5px;display:block;margin-top:3px}
+td.size{white-space:nowrap;color:var(--muted);font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px}
+td.name{word-break:break-word}
+tr:last-child td{border-bottom:0}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(228px,1fr))}
+.grid.tight{grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:14px}
+.card{
+  border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--card);
+  display:flex;flex-direction:column;gap:8px;min-width:0;
+}
+.prev{
+  display:flex;align-items:center;justify-content:center;
+  min-height:76px;padding:12px;border-radius:7px;overflow:hidden;
+  background:#fbf6ee;color:#2a211c;border:1px solid #e6ded1;
+  --mt-logo-accent:#a81e2d; --mt-logo-ink:#2a211c;
+}
+.prev.on-dark{
+  background:#1b1512;color:#f3ede3;border-color:#3b302a;
+  --mt-logo-accent:#d9525c; --mt-logo-ink:#f3ede3;
+}
+.prev.icon{min-height:56px}
+.card .desc{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.card .why{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.card .meta{
+  margin:auto 0 0;padding-top:8px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;
+}
+.card .meta .mono{font-size:12px}
+.folders{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.folders .card{gap:6px}
+.folders h3{font-size:17px}
+.folders h3 a{text-decoration:none}
+.folders h3 a:hover{text-decoration:underline}
+
+.swatches{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));margin:0 0 8px;padding:0;list-style:none}
+.swatches li{font-size:12px;line-height:1.45;color:var(--muted);min-width:0}
+.swatches .chip{display:block;height:34px;border-radius:6px;border:1px solid var(--line);margin-bottom:5px}
+.swatches b{display:block;color:var(--ink);font-weight:600;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11.5px;word-break:break-all}
+
+.foot{margin-top:52px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot a{color:var(--muted)}
+
+@media (max-width:480px){
+  .wrap{padding:16px 14px 72px}
+  h1{font-size:22px}
+  .grid,.grid.tight,.folders{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="crumbs" aria-label="Вы находитесь здесь">
+    <a href="../../">Брендбук myTravel</a>
+    <span class="sep">/</span>
+    <a href="../">brand</a>
+    <span class="sep">/</span>
+    <strong>docs</strong>
+  </nav>
+  <h1>brand/docs — правила, тон и доступность</h1>
+  <p class="lead">Три текстовых документа брендбука. Каждый лежит в двух видах: готовая HTML-страница для чтения и Markdown-исходник для правки.</p>
+  <p class="sub">Если сомневаетесь, с чего начать — начните с <a href="usage-rules.html">правил использования</a>: они короче остальных и отвечают на большинство вопросов.</p>
+  <h2>Документы</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Файл</th><th>О чём</th><th>Размер</th></tr></thead>
+      <tbody>
+      <tr><td class="name"><a href="usage-rules.html">usage-rules.html</a><span class="why">исходник: <a href="usage-rules.md">usage-rules.md</a></span></td><td>Правила использования<span class="why">Что можно и чего нельзя делать со знаком, словесным знаком и цветом. Обязателен для подрядчиков, агентств и партнёров. В конце — чек-лист, который дизайнер проходит перед сдачей макета</span></td><td class="size">17,7 КБ<span class="why">13,1 КБ · <a href="usage-rules.html" download>html</a> · <a href="usage-rules.md" download>md</a></span></td></tr>
+      <tr><td class="name"><a href="voice-and-tone.html">voice-and-tone.html</a><span class="why">исходник: <a href="voice-and-tone.md">voice-and-tone.md</a></span></td><td>Голос и тон<span class="why">Для всех, кто пишет текст: интерфейс, письма, push, поддержка, промо. Словарь «пиши так / не пиши так» и готовые формулировки на русском, узбекском и английском. Помните: узбекский текст на 10–20% длиннее русского, кнопки проверяйте именно на нём</span></td><td class="size">46,1 КБ<span class="why">40,2 КБ · <a href="voice-and-tone.html" download>html</a> · <a href="voice-and-tone.md" download>md</a></span></td></tr>
+      <tr><td class="name"><a href="accessibility.html">accessibility.html</a><span class="why">исходник: <a href="accessibility.md">accessibility.md</a></span></td><td>Доступность по WCAG 2.2<span class="why">Контрасты, тап-зоны, фокус и чек-лист приёмки. Все пары цветов посчитаны скриптом по формуле WCAG 2.1, а не подобраны на глаз — на глаз не подбирайте и вы</span></td><td class="size">52,2 КБ<span class="why">41,0 КБ · <a href="accessibility.html" download>html</a> · <a href="accessibility.md" download>md</a></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">HTML и Markdown — один и тот же текст. HTML удобно читать в браузере, Markdown удобно смотреть в diff и цитировать в задачах. Правится Markdown, HTML собирается по нему.</p>
+
+  <p class="foot">Страница собрана скриптом <code>build-listings.py</code>.
+  Правьте материалы в папке и запускайте его заново &mdash; список пересоберётся.
+  <a href="../../">На главную брендбука</a>.</p>
+</main>
+</body>
+</html>

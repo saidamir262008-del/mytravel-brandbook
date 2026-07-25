@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Шрифты myTravel — файлы папки fonts</title>
+<style>
+:root{
+  --bg:#fbf6ee; --ink:#2a211c; --accent:#a81e2d; --muted:#665d53;
+  --line:#e6ded1; --card:#fffdf8;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#1b1512; --ink:#f3ede3; --accent:#d9525c; --muted:#a89a8c;
+    --line:#3b302a; --card:#221b17;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 20px 96px}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,summary:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;
+}
+.mono,code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.88em}
+
+.crumbs{
+  font-size:14px;color:var(--muted);margin:0 0 22px;
+  padding-bottom:14px;border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;
+}
+.crumbs .sep{opacity:.5}
+.crumbs strong{font-weight:600;color:var(--ink)}
+
+h1{font-size:26px;line-height:1.25;margin:0 0 10px;font-weight:650;letter-spacing:-.01em}
+.lead{margin:0 0 8px;max-width:66ch;color:var(--ink)}
+.sub{margin:0 0 30px;color:var(--muted);font-size:14px}
+h2{
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:650;margin:38px 0 14px;padding-top:14px;border-top:1px solid var(--line);
+}
+h2:first-of-type{border-top:0;padding-top:0}
+h3{font-size:15px;margin:0 0 4px;font-weight:600;word-break:break-word}
+.note{
+  margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--accent);
+  background:var(--card);border-radius:0 6px 6px 0;font-size:14px;color:var(--ink);
+}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px}
+th,td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{
+  font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);font-weight:650;white-space:nowrap;
+}
+td .why{color:var(--muted);font-size:13.5px;display:block;margin-top:3px}
+td.size{white-space:nowrap;color:var(--muted);font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px}
+td.name{word-break:break-word}
+tr:last-child td{border-bottom:0}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(228px,1fr))}
+.grid.tight{grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:14px}
+.card{
+  border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--card);
+  display:flex;flex-direction:column;gap:8px;min-width:0;
+}
+.prev{
+  display:flex;align-items:center;justify-content:center;
+  min-height:76px;padding:12px;border-radius:7px;overflow:hidden;
+  background:#fbf6ee;color:#2a211c;border:1px solid #e6ded1;
+  --mt-logo-accent:#a81e2d; --mt-logo-ink:#2a211c;
+}
+.prev.on-dark{
+  background:#1b1512;color:#f3ede3;border-color:#3b302a;
+  --mt-logo-accent:#d9525c; --mt-logo-ink:#f3ede3;
+}
+.prev.icon{min-height:56px}
+.card .desc{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.card .why{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.card .meta{
+  margin:auto 0 0;padding-top:8px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;
+}
+.card .meta .mono{font-size:12px}
+.folders{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.folders .card{gap:6px}
+.folders h3{font-size:17px}
+.folders h3 a{text-decoration:none}
+.folders h3 a:hover{text-decoration:underline}
+
+.swatches{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));margin:0 0 8px;padding:0;list-style:none}
+.swatches li{font-size:12px;line-height:1.45;color:var(--muted);min-width:0}
+.swatches .chip{display:block;height:34px;border-radius:6px;border:1px solid var(--line);margin-bottom:5px}
+.swatches b{display:block;color:var(--ink);font-weight:600;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11.5px;word-break:break-all}
+
+.foot{margin-top:52px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot a{color:var(--muted)}
+
+@media (max-width:480px){
+  .wrap{padding:16px 14px 72px}
+  h1{font-size:22px}
+  .grid,.grid.tight,.folders{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="crumbs" aria-label="Вы находитесь здесь">
+    <a href="../../">Брендбук myTravel</a>
+    <span class="sep">/</span>
+    <a href="../">brand</a>
+    <span class="sep">/</span>
+    <strong>fonts</strong>
+  </nav>
+  <h1>brand/fonts — три гарнитуры, 16 субсетов</h1>
+  <p class="lead">Alegreya для заголовков, IBM Plex Sans для текста, IBM Plex Mono для цифр — все под открытой лицензией OFL. Нужны разработчику, который подключает шрифты к продукту.</p>
+  <p class="sub">Предпросмотра начертаний здесь нет намеренно: страница самодостаточна и ничего не подгружает. Как шрифты выглядят в работе — смотрите в <a href="../brandbook.html">брендбуке</a>.</p>
+  <h2>Шрифтовые файлы — 16 woff2</h2>
+  <p class="sub">Четыре субсета на каждое начертание. Подключать надо все четыре: браузер сам возьмёт нужный по unicode-range, а без cyrillic-ext узбекская кириллица разъедется по разным шрифтам.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Файл</th><th>Что это</th><th>Размер</th></tr></thead>
+      <tbody>
+      <tr><td class="name"><a href="Alegreya-500-700-cyrillic-ext.woff2">Alegreya-500-700-cyrillic-ext.woff2</a></td><td>Alegreya 500–700 — дисплейная гарнитура, субсет cyrillic-ext<span class="why">Обязателен: Қ, Ғ, Ҳ узбекской кириллицы живут только здесь. Применение: заголовки и крупные акценты, вес 500–700</span></td><td class="size">20,5 КБ<span class="why"><a href="Alegreya-500-700-cyrillic-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="Alegreya-500-700-cyrillic.woff2">Alegreya-500-700-cyrillic.woff2</a></td><td>Alegreya 500–700 — дисплейная гарнитура, субсет cyrillic<span class="why">Базовая кириллица: русский текст. Применение: заголовки и крупные акценты, вес 500–700</span></td><td class="size">22,6 КБ<span class="why"><a href="Alegreya-500-700-cyrillic.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="Alegreya-500-700-latin-ext.woff2">Alegreya-500-700-latin-ext.woff2</a></td><td>Alegreya 500–700 — дисплейная гарнитура, субсет latin-ext<span class="why">Расширенная латиница: диакритика европейских языков и узбекской латиницы. Применение: заголовки и крупные акценты, вес 500–700</span></td><td class="size">37,1 КБ<span class="why"><a href="Alegreya-500-700-latin-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="Alegreya-500-700-latin.woff2">Alegreya-500-700-latin.woff2</a></td><td>Alegreya 500–700 — дисплейная гарнитура, субсет latin<span class="why">Базовая латиница. Здесь же U+02BB — та самая запятая-модификатор в oʻ и gʻ. Применение: заголовки и крупные акценты, вес 500–700</span></td><td class="size">42,4 КБ<span class="why"><a href="Alegreya-500-700-latin.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-400-cyrillic-ext.woff2">IBMPlexMono-400-cyrillic-ext.woff2</a></td><td>IBM Plex Mono 400 — моноширинная, субсет cyrillic-ext<span class="why">Обязателен: Қ, Ғ, Ҳ узбекской кириллицы живут только здесь. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">4,2 КБ<span class="why"><a href="IBMPlexMono-400-cyrillic-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-400-cyrillic.woff2">IBMPlexMono-400-cyrillic.woff2</a></td><td>IBM Plex Mono 400 — моноширинная, субсет cyrillic<span class="why">Базовая кириллица: русский текст. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">5,3 КБ<span class="why"><a href="IBMPlexMono-400-cyrillic.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-400-latin-ext.woff2">IBMPlexMono-400-latin-ext.woff2</a></td><td>IBM Plex Mono 400 — моноширинная, субсет latin-ext<span class="why">Расширенная латиница: диакритика европейских языков и узбекской латиницы. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">8,7 КБ<span class="why"><a href="IBMPlexMono-400-latin-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-400-latin.woff2">IBMPlexMono-400-latin.woff2</a></td><td>IBM Plex Mono 400 — моноширинная, субсет latin<span class="why">Базовая латиница. Здесь же U+02BB — та самая запятая-модификатор в oʻ и gʻ. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">9,8 КБ<span class="why"><a href="IBMPlexMono-400-latin.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-600-cyrillic-ext.woff2">IBMPlexMono-600-cyrillic-ext.woff2</a></td><td>IBM Plex Mono 600 — моноширинная, субсет cyrillic-ext<span class="why">Обязателен: Қ, Ғ, Ҳ узбекской кириллицы живут только здесь. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">4,2 КБ<span class="why"><a href="IBMPlexMono-600-cyrillic-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-600-cyrillic.woff2">IBMPlexMono-600-cyrillic.woff2</a></td><td>IBM Plex Mono 600 — моноширинная, субсет cyrillic<span class="why">Базовая кириллица: русский текст. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">5,4 КБ<span class="why"><a href="IBMPlexMono-600-cyrillic.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-600-latin-ext.woff2">IBMPlexMono-600-latin-ext.woff2</a></td><td>IBM Plex Mono 600 — моноширинная, субсет latin-ext<span class="why">Расширенная латиница: диакритика европейских языков и узбекской латиницы. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">8,8 КБ<span class="why"><a href="IBMPlexMono-600-latin-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexMono-600-latin.woff2">IBMPlexMono-600-latin.woff2</a></td><td>IBM Plex Mono 600 — моноширинная, субсет latin<span class="why">Базовая латиница. Здесь же U+02BB — та самая запятая-модификатор в oʻ и gʻ. Применение: цены, даты, номера рейсов и паспортов — класс .mt-num</span></td><td class="size">9,9 КБ<span class="why"><a href="IBMPlexMono-600-latin.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexSans-400-700-cyrillic-ext.woff2">IBMPlexSans-400-700-cyrillic-ext.woff2</a></td><td>IBM Plex Sans 400–700 — текстовая гарнитура, субсет cyrillic-ext<span class="why">Обязателен: Қ, Ғ, Ҳ узбекской кириллицы живут только здесь. Применение: весь интерфейсный текст, вес 400–700</span></td><td class="size">19,2 КБ<span class="why"><a href="IBMPlexSans-400-700-cyrillic-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexSans-400-700-cyrillic.woff2">IBMPlexSans-400-700-cyrillic.woff2</a></td><td>IBM Plex Sans 400–700 — текстовая гарнитура, субсет cyrillic<span class="why">Базовая кириллица: русский текст. Применение: весь интерфейсный текст, вес 400–700</span></td><td class="size">24,8 КБ<span class="why"><a href="IBMPlexSans-400-700-cyrillic.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexSans-400-700-latin-ext.woff2">IBMPlexSans-400-700-latin-ext.woff2</a></td><td>IBM Plex Sans 400–700 — текстовая гарнитура, субсет latin-ext<span class="why">Расширенная латиница: диакритика европейских языков и узбекской латиницы. Применение: весь интерфейсный текст, вес 400–700</span></td><td class="size">25,3 КБ<span class="why"><a href="IBMPlexSans-400-700-latin-ext.woff2" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="IBMPlexSans-400-700-latin.woff2">IBMPlexSans-400-700-latin.woff2</a></td><td>IBM Plex Sans 400–700 — текстовая гарнитура, субсет latin<span class="why">Базовая латиница. Здесь же U+02BB — та самая запятая-модификатор в oʻ и gʻ. Применение: весь интерфейсный текст, вес 400–700</span></td><td class="size">39,3 КБ<span class="why"><a href="IBMPlexSans-400-700-latin.woff2" download>скачать</a></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Служебные файлы</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Файл</th><th>Что это</th><th>Размер</th></tr></thead>
+      <tbody>
+      <tr><td class="name"><a href="fonts-inline.css">fonts-inline.css</a></td><td>Собранные @font-face с base64 data: URI<span class="why">Те же шестнадцать woff2, вшитые прямо в CSS. Так брендбук открывается двойным кликом офлайн: Chrome блокирует загрузку шрифтов по file:// из-за CORS. Генерируется tools/build-fonts.py, руками не править</span></td><td class="size">389 КБ<span class="why"><a href="fonts-inline.css" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="gf.css">gf.css</a></td><td>Сырой ответ Google Fonts CSS API<span class="why">Промежуточный файл сборки: из него берутся ссылки на woff2 и unicode-range. Здесь ещё лежат ненужные субсеты — греческий, вьетнамский; их отсекает скрипт</span></td><td class="size">8,8 КБ<span class="why"><a href="gf.css" download>скачать</a></span></td></tr>
+      <tr><td class="name"><a href="OFL.txt">OFL.txt</a></td><td>SIL Open Font License 1.1<span class="why">Лицензия на все три гарнитуры. Коммерческое использование разрешено, отдельная покупка не нужна. Файл обязан ехать вместе со шрифтами</span></td><td class="size">4,3 КБ<span class="why"><a href="OFL.txt" download>скачать</a></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note"><b>Замену подбирать нельзя.</b> В узбекской латинице <code>oʻ</code> и <code>gʻ</code> пишутся через U+02BB — modifier letter turned comma, а не через апостроф. Onest, Manrope, Rubik, Golos Text, PT Sans и Wix Madefor этот символ не содержат, поэтому они отклонены.</p>
+
+  <p class="foot">Страница собрана скриптом <code>build-listings.py</code>.
+  Правьте материалы в папке и запускайте его заново &mdash; список пересоберётся.
+  <a href="../../">На главную брендбука</a>.</p>
+</main>
+</body>
+</html>
