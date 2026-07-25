@@ -1,0 +1,247 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>myTravel — доступность (WCAG 2.2) — myTravel</title><style>
+:root{--paper:#fbf6ee;--surface:#fff;--fg:#2a211c;--muted:#665d53;--line:#e6ded1;
+ --accent:#a81e2d;--link:#22285c}
+@media (prefers-color-scheme:dark){
+ :root{--paper:#1b1512;--surface:#241c18;--fg:#f3ede3;--muted:#c2b6a6;
+       --line:#3b302a;--accent:#d9525c;--link:#a8b0e0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--fg);
+ font:400 16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+ -webkit-font-smoothing:antialiased}
+main{max-width:82ch;margin:0 auto;padding:32px 24px 96px}
+nav.top{border-bottom:1px solid var(--line);background:var(--surface)}
+nav.top div{max-width:82ch;margin:0 auto;padding:12px 24px;font-size:14px;
+ display:flex;gap:16px;flex-wrap:wrap}
+nav.top a{color:var(--fg)}
+h1{font-size:32px;line-height:1.2;letter-spacing:-.02em;margin:28px 0 16px}
+h2{font-size:24px;line-height:1.25;margin:40px 0 12px;padding-top:14px;
+ border-top:1px solid var(--line)}
+h3{font-size:18px;margin:28px 0 8px}
+h4{font-size:16px;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:var(--link)}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:0 0 6px}
+code{font-family:ui-monospace,"SF Mono","IBM Plex Mono",monospace;font-size:.9em;
+ background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+ padding:14px 16px;overflow-x:auto;margin:0 0 16px}
+pre code{background:none;border:0;padding:0;font-size:13px;line-height:1.55}
+blockquote{margin:0 0 16px;padding:8px 16px;border-left:3px solid var(--accent);
+ color:var(--muted)}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.tablewrap{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;
+ letter-spacing:.04em}
+strong{font-weight:600}
+</style></head><body><nav class="top"><div><a href="../../index.html">← Выбор логотипа</a><a href="../brandbook.html">Брендбук</a><a href="voice-and-tone.html">Тон и слова</a><a href="usage-rules.html">Правила использования</a><a href="accessibility.html">Доступность</a></div></nav><main><h1>myTravel — доступность (WCAG 2.2)</h1>
+<p>Раздел брендбука для дизайнеров, верстальщиков и QA. Источник цвета — <code>tokens/tokens.css</code>. Контекст продукта: авиабилеты, отели, круизы, туры, аренда авто и квартир, трансфер, виза, страховка, экскурсии, автобус/ЖД, карго, концерты. Люди платят с телефона, часто в спешке, на дешёвых Android и медленном интернете, на трёх языках — русский, узбекский (латиница), английский. Бренд-цвет <code>--mt-anor-600</code> — гранатовый — это и цвет главного действия, поэтому <strong>ошибка никогда не обозначается одним красным</strong> (§3).</p>
+<p>Числа контраста ниже посчитаны скриптом <code>contrast.py</code> (формула WCAG 2.1: относительная яркость sRGB → gamma 2.4 → <code>(L_light + 0.05) / (L_dark + 0.05)</code>), а не подобраны на глаз. Прогон по всем значениям <code>tokens/tokens.css</code> — светлая тема и <code>[data-theme=&quot;dark&quot;]</code>.</p>
+<h2>Оглавление</h2>
+<ol>
+<li><a href="#1-целевой-уровень-и-критерии-wcag-22">Целевой уровень и критерии WCAG 2.2</a></li>
+<li><a href="#2-контрастные-матрицы">Контрастные матрицы</a></li>
+<li><a href="#3-цвет-никогда-не-единственный-носитель-смысла">Цвет никогда не единственный носитель смысла</a></li>
+<li><a href="#4-тап-зоны">Тап-зоны</a></li>
+<li><a href="#5-фокус">Фокус</a></li>
+<li><a href="#6-формы-и-деньги">Формы и деньги</a></li>
+<li><a href="#7-три-языка-и-типографика">Три языка и типографика</a></li>
+<li><a href="#8-движение-и-анимация">Движение и анимация</a></li>
+<li><a href="#9-скринридеры-и-ассистивные-технологии">Скринридеры и ассистивные технологии</a></li>
+<li><a href="#10-медленный-интернет-и-дешёвые-устройства">Медленный интернет и дешёвые устройства</a></li>
+<li><a href="#11-чек-лист-приёмки">Чек-лист приёмки</a></li>
+<li><a href="#12-как-проверять">Как проверять</a></li>
+</ol>
+<hr>
+<h2>1. Целевой уровень и критерии WCAG 2.2</h2>
+<p><strong>База — WCAG 2.2 AA для всего продукта. AAA — обязательно</strong> для основного текста (<code>--mt-text</code> / <code>--mt-n-900</code>), всего, что связано с деньгами (цена, штраф, сумма возврата), и статусов оплаты/бронирования (await/ok/cancel/refund). Где токен не дотягивает до AAA в денежном контексте — явно показано в §2, «Что не проходит», без сглаживания.</p>
+<p>Критерии 2.2, добавленные к 2.1 и релевантные продукту:</p>
+<div class="tablewrap"><table><thead><tr><th>Критерий</th><th>Что требует</th><th>Где</th></tr></thead><tbody><tr><td><strong>2.4.11 Focus Not Obscured</strong></td><td>Элемент в фокусе не скрыт залипающей шапкой, нижней панелью навигации или плашкой оплаты</td><td>§5</td></tr><tr><td><strong>2.5.7 Dragging Movements</strong></td><td>У любого drag-действия (слайдер дат, свайп карточки) есть альтернатива без перетаскивания</td><td>§4, §6</td></tr><tr><td><strong>2.5.8 Target Size (Minimum)</strong></td><td>Цель ≥ 24×24px либо ≥24px до соседней цели. Стандарт продукта — <code>--mt-tap-min: 44px</code>, жёстче минимума</td><td>§4</td></tr><tr><td><strong>3.3.7 Redundant Entry</strong></td><td>Нельзя второй раз в одном процессе спрашивать уже введённые данные (паспорт при визе → паспорт при страховке в том же заказе)</td><td>§6</td></tr><tr><td><strong>3.3.8 Accessible Authentication</strong></td><td>Вход/подтверждение (OTP, 3-D Secure) не требует когнитивного теста (капчи) без альтернативы</td><td>§6, §8</td></tr></tbody></table></div>
+<hr>
+<h2>2. Контрастные матрицы</h2>
+<p>Оценка: <strong>AAA</strong> ≥ 7:1 · <strong>AA</strong> ≥ 4.5:1 · <strong>AA Large</strong> ≥ 3:1 (только текст ≥24px обычного начертания / ≥18.66px bold, либо непойстовые элементы — границы, фокус-кольцо) · <strong>FAIL</strong> &lt; 3:1.</p>
+<h3>2.1 Светлая тема — нейтральный текстовый ряд</h3>
+<div class="tablewrap"><table><thead><tr><th>Текст</th><th>Фон</th><th>Contrast</th><th>Оценка</th></tr></thead><tbody><tr><td><code>--mt-n-500</code> (#877d70)</td><td><code>--mt-n-50</code> (#fbf6ee, каймак)</td><td>3.76:1</td><td>AA Large</td></tr><tr><td><code>--mt-n-500</code></td><td><code>--mt-n-100</code> (#f3ede3)</td><td>3.47:1</td><td>AA Large</td></tr><tr><td><code>--mt-n-500</code></td><td><code>#ffffff</code></td><td>4.04:1</td><td>AA Large</td></tr><tr><td><code>--mt-n-600</code> (#665d53)</td><td><code>--mt-n-50</code></td><td>6.01:1</td><td>AA</td></tr><tr><td><code>--mt-n-600</code></td><td><code>--mt-n-100</code></td><td>5.55:1</td><td>AA</td></tr><tr><td><code>--mt-n-600</code></td><td><code>#ffffff</code></td><td>6.46:1</td><td>AA</td></tr><tr><td><code>--mt-n-700</code> (#4a423a)</td><td><code>--mt-n-50</code></td><td>9.16:1</td><td>AAA</td></tr><tr><td><code>--mt-n-700</code></td><td><code>--mt-n-100</code></td><td>8.46:1</td><td>AAA</td></tr><tr><td><code>--mt-n-700</code></td><td><code>#ffffff</code></td><td>9.85:1</td><td>AAA</td></tr><tr><td><code>--mt-n-900</code> (#2a211c)</td><td><code>--mt-n-50</code></td><td>14.65:1</td><td>AAA</td></tr><tr><td><code>--mt-n-900</code></td><td><code>--mt-n-100</code></td><td>13.53:1</td><td>AAA</td></tr><tr><td><code>--mt-n-900</code></td><td><code>#ffffff</code></td><td>15.76:1</td><td>AAA</td></tr></tbody></table></div>
+<p><code>--mt-text</code>=n-900, <code>--mt-text-secondary</code>=n-600, <code>--mt-text-muted</code>=n-500 — таблица одновременно проверяет ролевые токены на <code>--mt-bg</code>/<code>--mt-surface</code>/ <code>--mt-surface-alt</code>. n-600 на n-50 (6.01:1) и n-900 на n-50 (14.65:1) совпадают с комментариями в <code>tokens.css</code> («6.0:1», «14.7:1») в пределах округления — методика подтверждена.</p>
+<h3>2.2 Светлая тема — бренд и индиго</h3>
+<div class="tablewrap"><table><thead><tr><th>Пара</th><th>Contrast</th><th>Оценка</th></tr></thead><tbody><tr><td><code>--mt-anor-600</code> текстом на <code>--mt-n-50</code> (каймак)</td><td>6.76:1</td><td>AA — <strong>не AAA</strong></td></tr><tr><td><code>--mt-anor-600</code> текстом на <code>#ffffff</code></td><td>7.27:1</td><td>AAA</td></tr><tr><td><code>#ffffff</code> на <code>--mt-anor-600</code> (кнопка «Оплатить»)</td><td>7.27:1</td><td>AAA</td></tr><tr><td><code>--mt-anor-400</code> текстом на тёмном фоне <code>#1b1512</code></td><td>4.57:1</td><td>AA</td></tr><tr><td><code>--mt-indigo-700</code> на <code>--mt-n-50</code></td><td>12.80:1</td><td>AAA</td></tr><tr><td><code>#ffffff</code> на <code>--mt-indigo-700</code></td><td>13.76:1</td><td>AAA</td></tr></tbody></table></div>
+<h3>2.3 Статусы бронирования — текст на фоне статуса</h3>
+<div class="tablewrap"><table><thead><tr><th>Статус</th><th>Пара токенов</th><th>Contrast</th><th>Оценка</th></tr></thead><tbody><tr><td>await, светлая</td><td><code>--mt-status-await</code> (urik-700) на <code>--mt-status-await-bg</code></td><td>4.99:1</td><td>AA — <strong>не AAA</strong></td></tr><tr><td>ok, светлая</td><td><code>--mt-status-ok</code> (success-fg) на <code>--mt-status-ok-bg</code></td><td>7.68:1</td><td>AAA</td></tr><tr><td>cancel, светлая</td><td><code>--mt-status-cancel</code> (n-700) на <code>--mt-status-cancel-bg</code> (n-200)</td><td>7.38:1</td><td>AAA</td></tr><tr><td>refund, светлая</td><td><code>--mt-status-refund</code> (indigo-700) на <code>--mt-status-refund-bg</code></td><td>11.07:1</td><td>AAA</td></tr><tr><td>await, тёмная</td><td><code>#f0c882</code> на <code>#33240c</code></td><td>9.51:1</td><td>AAA</td></tr><tr><td>ok, тёмная</td><td><code>#a7dfbe</code> на <code>#14301f</code></td><td>9.47:1</td><td>AAA</td></tr><tr><td>cancel, тёмная</td><td><code>#c2b6a6</code> на <code>#2e241f</code></td><td>7.59:1</td><td>AAA</td></tr><tr><td>refund, тёмная</td><td><code>#c3c8e0</code> на <code>#1c1f3d</code></td><td>9.65:1</td><td>AAA</td></tr></tbody></table></div>
+<p>Единственный статус ниже AAA-цели для платёжных статусов — <strong>await в светлой теме (4.99:1)</strong>, разбор в §2.5.</p>
+<h3>2.4 Семантика success / warning / error / info (<code>*-fg</code> на <code>*-bg</code>)</h3>
+<div class="tablewrap"><table><thead><tr><th>Пара</th><th>Светлая тема</th><th>Тёмная тема</th></tr></thead><tbody><tr><td>success-fg / success-bg</td><td>7.68:1 — AAA</td><td>9.47:1 — AAA</td></tr><tr><td>warning-fg (urik-700) / warning-bg</td><td>4.99:1 — AA, <strong>не AAA</strong></td><td>9.51:1 — AAA</td></tr><tr><td>error-fg / error-bg</td><td>9.94:1 — AAA</td><td>9.16:1 — AAA</td></tr><tr><td>info-fg / info-bg</td><td>13.20:1 — AAA</td><td>9.65:1 — AAA</td></tr></tbody></table></div>
+<h3>2.5 <code>--mt-urik-500</code> как текст — проверка запрета</h3>
+<div class="tablewrap"><table><thead><tr><th>Пара</th><th>Contrast</th><th>Оценка</th></tr></thead><tbody><tr><td><code>--mt-urik-500</code> на <code>--mt-n-50</code> (каймак)</td><td>2.01:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-urik-500</code> на <code>#ffffff</code></td><td>2.16:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-urik-700</code> на <code>--mt-n-50</code> — замена для текста</td><td>5.31:1</td><td>AA</td></tr><tr><td><code>--mt-urik-500</code> на тёмном <code>#1b1512</code> (для справки)</td><td>8.38:1</td><td>AAA</td></tr></tbody></table></div>
+<p><code>--mt-urik-500</code> не используется для текста ни в одной теме, даже там, где формально проходит (тёмная). Это точечный/плашечный цвет: точка <code>--mt-status-await-dot</code>, фон бейджа, акцент ≤10% площади — одно правило для обеих тем проще поддерживать, чем условие «можно в тёмной, нельзя в светлой».</p>
+<h3>2.6 Фокус-кольцо — контраст к фонам (порог 3:1, WCAG 1.4.11/2.4.11)</h3>
+<div class="tablewrap"><table><thead><tr><th>Тема</th><th>Фон</th><th>Contrast</th></tr></thead><tbody><tr><td>Светлая, <code>--mt-focus</code>=indigo-700</td><td><code>--mt-bg</code> (n-50)</td><td>12.80:1</td></tr><tr><td>Светлая</td><td><code>--mt-surface</code> (white)</td><td>13.76:1</td></tr><tr><td>Светлая</td><td><code>--mt-surface-alt</code> (n-100)</td><td>11.82:1</td></tr><tr><td>Светлая</td><td><code>--mt-border</code> (n-200)</td><td>10.31:1</td></tr><tr><td>Тёмная, <code>--mt-focus</code>=#a8b0e0</td><td><code>--mt-bg</code> (#1b1512)</td><td>8.56:1</td></tr><tr><td>Тёмная</td><td><code>--mt-surface</code> (#241c18)</td><td>7.95:1</td></tr><tr><td>Тёмная</td><td><code>--mt-surface-alt</code> (#2e241f)</td><td>7.17:1</td></tr><tr><td>Тёмная</td><td><code>--mt-border</code> (#3b302a)</td><td>6.06:1</td></tr></tbody></table></div>
+<p>Фокус-кольцо проходит 3:1 на любой поверхности продукта в обеих темах — единственная категория без замечаний.</p>
+<h3>2.7 Тёмная тема — текстовые роли на всех поверхностях</h3>
+<div class="tablewrap"><table><thead><tr><th>Текст</th><th><code>--mt-bg</code> #1b1512</th><th><code>--mt-bg-sunken</code> #150f0d</th><th><code>--mt-surface</code> #241c18</th><th><code>--mt-surface-alt</code> #2e241f</th></tr></thead><tbody><tr><td><code>--mt-text</code> #f3ede3</td><td>15.51 AAA</td><td>16.30 AAA</td><td>14.40 AAA</td><td>12.99 AAA</td></tr><tr><td><code>--mt-text-secondary</code> #c2b6a6</td><td>9.06 AAA</td><td>9.53 AAA</td><td>8.41 AAA</td><td>7.59 AAA</td></tr><tr><td><code>--mt-text-muted</code> #9b8e7e</td><td>5.65 AA</td><td>5.93 AA</td><td>5.24 AA</td><td>4.73 AA</td></tr></tbody></table></div>
+<h3>2.8 Тёмная тема — кнопка действия и границы (порог 3:1)</h3>
+<div class="tablewrap"><table><thead><tr><th>Пара</th><th>Contrast</th><th>Оценка</th></tr></thead><tbody><tr><td><code>--mt-accent</code> (anor-400) на <code>--mt-bg</code></td><td>4.57:1</td><td>AA</td></tr><tr><td><code>--mt-accent-fg</code> (#24100f) на <code>--mt-accent</code></td><td>4.59:1</td><td>AA — <strong>запас 0.09</strong></td></tr><tr><td><code>--mt-accent-hover</code> (#e2707a) на <code>--mt-bg</code></td><td>5.88:1</td><td>AA</td></tr><tr><td><code>--mt-border</code> (n-200) на <code>--mt-surface</code> (white, светлая)</td><td>1.33:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-border</code> на <code>--mt-bg</code> (n-50, светлая)</td><td>1.24:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-border-strong</code> (n-300) на white</td><td>1.64:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-border-strong</code> на n-50</td><td>1.52:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-border</code> (#3b302a) на <code>--mt-surface</code> (тёмная)</td><td>1.31:1</td><td><strong>FAIL</strong></td></tr><tr><td><code>--mt-border-strong</code> (#4f423a) на <code>--mt-surface</code> (тёмная)</td><td>1.73:1</td><td><strong>FAIL</strong></td></tr></tbody></table></div>
+<h3>Что в палитре не проходит и как с этим жить</h3>
+<ol>
+<li><strong> 0  как текст — FAIL в светлой теме (2.01–2.16:1).</strong></li>
+</ol>
+<p>Замена: только <code>--mt-urik-700</code> (5.31:1). <code>--mt-urik-500</code> остаётся точкой статуса, плашкой ≤10% площади, заливкой бейджа под текстом другого цвета.</p>
+<ol>
+<li>**<code>--mt-border</code>/<code>--mt-border-strong</code> не проходят 3:1 нигде</li>
+</ol>
+<p>(1.24–1.73:1), в обеих темах.** Граница — декоративный раздел, не единственный носитель состояния. Для состояний, которые обязаны быть различимы (invalid-инпут, выбранный чекбокс, активная карточка тарифа): толстая обводка акцентным цветом (<code>--mt-anor-700</code> для ошибки — 2px, 9.94:1 к error-bg), плюс иконка/чек, плюс заливка <code>--mt-surface-alt</code>. Обычная <code>--mt-border</code> — только «мягкое» визуальное разделение, где потеря границы не меняет смысла экрана.</p>
+<ol>
+<li><strong> 0  текстом на каймаке — AA (6.76:1), не AAA,</strong> хотя</li>
+</ol>
+<p>цена — денежный контекст с целевым AAA. На чистом <code>--mt-surface</code> (white) та же пара — 7.27:1 (AAA), потому что n-50 темнее white. Замена: акцентный текст (выделенная скидка, ссылка «Изменить тариф») прямо на каймачном фоне — <code>--mt-anor-700</code> (8.73:1, AAA); <code>--mt-anor-600</code> — только фон кнопки, где поверх всегда белый текст (уже 7.27:1, AAA).</p>
+<ol>
+<li><strong>Статус await/warning в светлой теме — 4.99:1, AA, не AAA.</strong></li>
+</ol>
+<p>Единственный из четырёх статусов ниже AAA-цели для платёжных статусов. <code>--mt-urik-700</code> уже близок к максимально тёмному варианту курагового тона, дальше он читается как «коричневый», а не «урюк». Два варианта: (а) принять AA как осознанное исключение — await это ожидание, а не потеря денег, критичность ниже, чем у error/cancel/refund; (б) для строгой AAA-политики без исключений — завести <code>--mt-urik-800</code> только для текста await в критичных местах (шапка заказа, письмо). Решение по умолчанию — вариант (а), зафиксирован как осознанный компромисс, а не пропуск.</p>
+<ol>
+<li>**<code>--mt-accent-fg</code> на <code>--mt-accent</code> в тёмной теме — 4.59:1, запас</li>
+</ol>
+<p>0.09 от AA.** Не применять к этой паре прозрачность, <code>filter: brightness()</code> или полупрозрачные оверлеи pressed/disabled без повторной проверки — любое смещение luminance на 1–2 пункта роняет пару ниже 4.5:1.</p>
+<ol>
+<li>**<code>--mt-n-500</code> как обычный текст — FAIL для тела текста</li>
+</ol>
+<p>(3.47–4.04:1).** Подтверждено расчётом: комментарий в токенах («только крупный текст») верен. Использовать только для текста ≥24px обычного начертания / ≥18.66px bold. Для подписей и второстепенного текста любого размера — <code>--mt-n-600</code> (AA везде).</p>
+<hr>
+<h2>3. Цвет никогда не единственный носитель смысла</h2>
+<p><code>--mt-anor-600</code> — это и цвет ошибки эквайринга, и цвет кнопки «Оплатить». Если статус выражен только оттенком красного, интерфейс на секунду читается как «нажми сюда, чтобы заплатить». У каждого статуса — три независимых канала: <strong>иконка + точка + текст</strong>, они не дублируют смысл, а усиливают его.</p>
+<div class="tablewrap"><table><thead><tr><th>Статус</th><th>Иконка</th><th>Точка (<code>*-dot</code>)</th><th>Текст</th><th>Фон</th></tr></thead><tbody><tr><td>Ожидает оплаты</td><td>часы</td><td><code>--mt-status-await-dot</code> (urik-500)</td><td>«Ждём оплату»</td><td><code>--mt-status-await-bg</code></td></tr><tr><td>Подтверждено</td><td>галочка в круге</td><td><code>--mt-status-ok-dot</code> (success)</td><td>«Подтверждено»</td><td><code>--mt-status-ok-bg</code></td></tr><tr><td>Отменено</td><td>минус в круге</td><td><code>--mt-status-cancel-dot</code> (n-500)</td><td>«Отменено»</td><td><code>--mt-status-cancel-bg</code></td></tr><tr><td>Возврат</td><td>стрелка назад</td><td><code>--mt-status-refund-dot</code> (indigo-500)</td><td>«Возврат»</td><td><code>--mt-status-refund-bg</code></td></tr></tbody></table></div>
+<p><strong>Почему «отменено» нейтральное (n-700/n-200/n-500), а не красное.</strong> Красный занят: это гранат кнопки действия. Если «Отменено» тоже красное, взгляд, скользящий по списку заказов в спешке, на долю секунды путает статус с призывом к действию. Нейтральный серый читается как «этот пункт неактивен» — заказ вышел из жизненного цикла и не требует решения прямо сейчас. Красным остаётся только реальная угроза денег: ошибка платежа, истекающий таймер.</p>
+<p><strong>Проверка «через монохромный фильтр».</strong> Перед сдачей макета — скриншот списка заказов через <code>filter: grayscale(1)</code> или эмуляцию <code>forced-colors</code> (§12). Если статусы неразличимы без цвета — не готово.</p>
+<p><strong>Ссылки.</strong> <code>--mt-link</code> всегда с <code>text-decoration: underline</code>, а не только цветом — иначе человек с дальтонизмом (протанопия/дейтеранопия, ~8% мужчин) не отличит ссылку от текста абзаца.</p>
+<hr>
+<h2>4. Тап-зоны</h2>
+<p>Стандарт — <code>--mt-tap-min: 44px</code>, жёстче минимума 2.5.8 (24×24px). Расстояние между соседними целями — не меньше <code>--mt-space-2</code> (8px) по свободному краю, если сами цели меньше 44px.</p>
+<p><strong>Плотные строки результатов поиска.</strong> Карточка рейса/отеля не дробится на мелкие кликабельные зоны (цена/время/кнопка отдельно) — весь блок результата является одной тап-целью высотой ≥44px на всю ширину карточки. Вторичные действия внутри («Подробнее о тарифе», «Добавить багаж») получают собственные 44×44px зоны с <code>--mt-space-2</code>-отступом от края карточки.</p>
+<p><strong>Календарь.</strong> Сетка 7×n на 360px не даёт 44px по высоте (обычно 32–36px строка). Решение: видимый размер ячейки может быть меньше 44px, но <strong>тап-зона</strong> — невидимый <code>padding</code> внутри <code>&lt;button&gt;</code> (не <code>margin</code>), расширяющий кликабельную область до 44×44px за счёт соседних зазоров сетки. Если и после этого центры ячеек ближе 8px друг к другу — заменить сетку на список дат там, где нужна ровно одна дата («выезд»), сетку-календарь оставить для диапазона (тур, аренда). Текущий/выбранный день/день с низкой ценой различаются не только заливкой, но и текстом/иконкой — та же логика §3.</p>
+<p><strong>Большие пальцы, экран 6.7&quot;.</strong> Верхние углы недостижимы большим пальцем при одноручном хвате. Первичное действие («Оплатить», «Выбрать») — нижняя треть экрана, на всю ширину минус поля, ≥44px (на практике 52–56px). Второстепенные действия (назад, поделиться) — верх, они не требуют быстрой реакции. Drag нигде не единственный способ (2.5.7): слайдер цены в фильтрах и диапазон дат дублируются полями ввода с клавиатурой/степпером.</p>
+<hr>
+<h2>5. Фокус</h2>
+<pre><code>:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--mt-focus-width) solid var(--mt-focus); /* 2px */
+  outline-offset: var(--mt-focus-offset); /* 2px */
+  border-radius: var(--mt-radius-sm);
+}</code></pre>
+<p>Контраст <code>--mt-focus</code> к любой поверхности продукта — 6.06:1 и выше в обеих темах (§2.6), обводка всегда читается.</p>
+<p><strong> 0 , не  1 .</strong> Обводка появляется при клавиатуре/ переключателе и не появляется при тапе или клике мышью — иначе кольцо на каждой кнопке при тапе выглядит багом. Без поддержки <code>:focus-visible</code> — безопасная деградация до обычного <code>:focus</code>.</p>
+<p><strong>Порядок обхода.</strong> DOM = визуальный порядок = порядок чтения (цена → время → багаж → «Выбрать» — и в разметке, и в табличном виде для десктопа). <code>tabindex</code> больше 0 не используется никогда.</p>
+<p><strong>Скип-линк.</strong> Первый фокусируемый элемент — «Перейти к результатам» / «Перейти к содержимому», видимый только в фокусе, ведёт к <code>&lt;main&gt;</code>. Обязателен на странице выдачи с длинным блоком фильтров.</p>
+<p><strong>Ловушка фокуса в модалках и шитах.</strong> Открытие переносит фокус на первый интерактивный элемент (или заголовок) и запирает <code>Tab</code>/ <code>Shift+Tab</code> внутри, пока модалка открыта. <code>Esc</code> и кнопка «Закрыть» возвращают фокус на элемент, который её открыл. Фон получает <code>aria-hidden=&quot;true&quot;</code>/<code>inert</code>.</p>
+<p><strong>2.4.11 Focus Not Obscured.</strong> У нас минимум два залипающих слоя: шапка с поиском/фильтрами и нижняя панель цены на шаге бронирования. Ни один не должен полностью закрывать элемент в фокусе:</p>
+<ul>
+<li>скроллящийся список со залипающей нижней панелью — <code>scroll-padding-bottom</code></li>
+</ul>
+<p>равный высоте панели + <code>--mt-space-4</code>, чтобы <code>scrollIntoView()</code> и табуляция не прятали поле под панель;</p>
+<ul>
+<li>залипающая шапка — аналогичный <code>scroll-margin-top</code> на секциях;</li>
+<li>модалка выше экрана — внутренний скролл (<code>overflow-y: auto</code>), а не</li>
+</ul>
+<p>растяжение страницы, иначе фокус «уезжает» за шапку модалки.</p>
+<hr>
+<h2>6. Формы и деньги</h2>
+<p><strong>Label всегда видимый.</strong> Ни одно поле оплаты/пассажира/адреса не полагается на <code>placeholder</code> как единственную подпись — он исчезает при вводе, и человек, отвлёкшийся посреди заполнения паспортных данных, теряет контекст. Подпись — постоянный <code>&lt;label for&gt;</code>, кегль не меньше <code>--mt-text-14</code>, цвет не бледнее <code>--mt-n-600</code>.</p>
+<div class="tablewrap"><table><thead><tr><th>Поле</th><th><code>type</code>/<code>inputmode</code></th><th><code>autocomplete</code></th></tr></thead><tbody><tr><td>Телефон</td><td><code>type=&quot;tel&quot;</code> <code>inputmode=&quot;tel&quot;</code></td><td><code>tel</code></td></tr><tr><td>Номер карты</td><td><code>inputmode=&quot;numeric&quot;</code></td><td><code>cc-number</code></td></tr><tr><td>Срок действия карты</td><td><code>inputmode=&quot;numeric&quot;</code></td><td><code>cc-exp</code></td></tr><tr><td>CVV</td><td><code>inputmode=&quot;numeric&quot;</code></td><td><code>cc-csc</code></td></tr><tr><td>Email</td><td><code>type=&quot;email&quot;</code> <code>inputmode=&quot;email&quot;</code></td><td><code>email</code></td></tr><tr><td>Номер паспорта</td><td><code>inputmode=&quot;text&quot;</code></td><td><code>off</code>, но подставляется из профиля (см. ниже)</td></tr><tr><td>OTP из SMS</td><td><code>inputmode=&quot;numeric&quot;</code></td><td><code>one-time-code</code></td></tr></tbody></table></div>
+<p><strong>Ошибки — рядом с полем.</strong> Текст ошибки под полем, связан через <code>aria-describedby</code>, поле — <code>aria-invalid=&quot;true&quot;</code> на время ошибки:</p>
+<pre><code>&lt;label for=&quot;card-number&quot;&gt;Номер карты&lt;/label&gt;
+&lt;input id=&quot;card-number&quot; inputmode=&quot;numeric&quot; autocomplete=&quot;cc-number&quot;
+       aria-invalid=&quot;true&quot; aria-describedby=&quot;card-number-err&quot;&gt;
+&lt;p id=&quot;card-number-err&quot;&gt;Карта не прошла проверку. Проверьте срок действия и CVV.&lt;/p&gt;</code></pre>
+<p>Текст ошибки — по словарю <code>docs/voice-and-tone.md</code>: причина, потом код, без обвинения пользователя. Сводный статус над кнопкой «Оплатить» («Проверяем платёж…» → «Банк отклонил платёж») — <code>aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;</code>, чтобы прочитать изменение целиком один раз, не дублируя <code>aria-describedby</code> полей.</p>
+<p><strong>Соединение обрывается — данные не теряются.</strong> Поиск и выбранные места сохраняются локально до восстановления сети (пример текста — <code>docs/voice-and-tone.md</code> §6.6); форма оплаты не сбрасывает введённые поля (кроме CVV, который не хранится).</p>
+<p><strong>3.3.7 Redundant Entry.</strong> Паспорт, введённый на шаге визы, подставляется автоматически на шаге страховки того же заказа с пометкой «как в визовой заявке, можно изменить», а не пустым полем. Телефон/email/ сохранённая карта из профиля подставляются во все формы заказа с возможностью правки.</p>
+<p><strong>3.3.8 Accessible Authentication.</strong> OTP-поле — <code>autocomplete=&quot;one-time-code&quot;</code>, чтобы iOS/Android подставляли код без переключения в «Сообщения». Капча (текстовая/графическая) не ставится как обязательный шаг перед входом или оплатой — это запрещённый когнитивный тест без альтернативы. Антифроду — поведенческий анализ или one-tap push, не «введите цифры с картинки».</p>
+<hr>
+<h2>7. Три языка и типографика</h2>
+<p><strong>Минимальный кегль основного текста — 16px</strong> (<code>--mt-text-16</code> = <code>1rem</code>). Поля <code>&lt;input&gt;</code> мельче 16px заставляют iOS Safari зумить экран при фокусе — на форме оплаты это ломает раскладку. Все <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code> — не меньше 16px, даже если 14px компактнее впишется в мобильную форму.</p>
+<p><strong>Узбекский текст длиннее русского на 10–20%</strong> (агглютинация, <code>docs/voice-and-tone.md</code> §9.1): <code>[ Ijarani bekor qilish va 840 000 soʻm olish ]</code> не влезает в ширину, рассчитанную под «Отменить аренду». Кнопки и бейджи — <code>width: auto</code> с <code>min-width</code>, не жёсткий <code>width</code>; если текст не влезает — сокращаем его под язык, не уменьшаем кегль ниже <code>--mt-text-14</code>.</p>
+<p><strong> 0  на  1  и на вставках.</strong> Корневой <code>lang</code> переключается с языком интерфейса. Смешанные фрагменты (<code>Turkish Airlines</code> в русском тексте, паспортное имя латиницей) — в <code>&lt;span lang=&quot;en&quot;&gt;</code>, чтобы VoiceOver/TalkBack произносили их на нужном языке, а не по русско-фонетическим правилам.</p>
+<p><strong> 0 / 1  — U+02BB, не апостроф.</strong> Правило и типичные ошибки — в <code>docs/voice-and-tone.md</code> §5. Для доступности это не только орфография: диктор на ASCII <code>&#x27;</code> внутри <code>to&#x27;lov</code> иногда читает «штрих» или обрывает слово, а корректный U+02BB в шрифтах <code>fonts/</code> читается без паузы. Перед сдачей — тот же поиск по <code>&#x27;</code>/<code>’</code>/`<code> </code> `` в uz-строках.</p>
+<p><strong>Без переноса в номерах рейсов и суммах.</strong> <code>TK 371</code>, <code>MT-4471982</code>, <code>4 850 000 сум</code> — <code>white-space: nowrap</code> или неразрывный пробел U+00A0 между разрядами, плюс <code>.mt-num</code> из <code>tokens.css</code> (<code>tabular-nums</code>), чтобы колонка цен не «дышала» и не переносилась на 360px.</p>
+<hr>
+<h2>8. Движение и анимация</h2>
+<p><code>tokens.css</code> уже обнуляет <code>--mt-duration-*</code> и ставит <code>animation-duration: 0.01ms !important</code> при <code>prefers-reduced-motion: reduce</code> — этого достаточно для CSS; для ручных JS-анимаций (canvas, <code>requestAnimationFrame</code>) флаг нужно продублировать в коде.</p>
+<p><strong>Карусели не автопрокручиваются.</strong> Только действие пользователя (свайп, стрелка, точки), без автотаймера; если ротация всё же нужна — пауза на наведении/фокусе и без автозапуска заново.</p>
+<p><strong>Ограничение мигания.</strong> Ничего не мигает быстрее 3 раз/сек (2.3.1); пульсация точки статуса — плавная, и с <code>prefers-reduced-motion</code> становится статичной.</p>
+<p><strong>Таймер «держим место 19:42».</strong> Одного визуального таймера недостаточно: не читается скринридером построчно и является единственным носителем дедлайна. Решение:</p>
+<ul>
+<li>текст рядом на человеческом языке — «Место держим до 19:42», не</li>
+</ul>
+<p>только цифры отсчёта;</p>
+<ul>
+<li><code>aria-live=&quot;polite&quot;</code> обновляется не каждую секунду (заглушит</li>
+</ul>
+<p>скринридер), а при смене минуты, плюс отдельное более заметное сообщение за 2 минуты до истечения;</p>
+<ul>
+<li><strong>2.2.1 Timing Adjustable</strong> — способ продлить лимит до истечения</li>
+</ul>
+<p>(«Ещё немного времени»), если поставщик это позволяет; если продление невозможно — заранее объяснить, что произойдёт и что делать («если время выйдет, начните поиск заново — оплата не спишется»), без тихого сброса.</p>
+<hr>
+<h2>9. Скринридеры и ассистивные технологии</h2>
+<p><strong>Иконки-кнопки.</strong> Конвенция для SVG в <code>icons/</code>: самостоятельная кнопка-иконка несёт <code>&lt;title&gt;</code> внутри <code>&lt;svg&gt;</code> с уникальным <code>id</code>, кнопка ссылается на него через <code>aria-labelledby</code>:</p>
+<pre><code>&lt;button type=&quot;button&quot; aria-labelledby=&quot;icon-share-label&quot;&gt;
+  &lt;svg role=&quot;img&quot; aria-labelledby=&quot;icon-share-label&quot;&gt;
+    &lt;title id=&quot;icon-share-label&quot;&gt;Поделиться ваучером&lt;/title&gt;
+    &lt;use href=&quot;/icons/share.svg#icon&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+<p>Иконка рядом с видимым текстом того же смысла — <code>aria-hidden=&quot;true&quot;</code>, подпись не дублируется.</p>
+<p><strong> 0  для статуса оплаты.</strong> Переход «Проверяем платёж…» → «Оплата прошла»/«Банк отклонил платёж» озвучивается через <code>aria-live=&quot;polite&quot;</code> (§6) без необходимости обходить экран вручную.</p>
+<p><strong>Таблицы результатов поиска.</strong> Данные с чёткими колонками (цена, время, багаж) — семантическая <code>&lt;table&gt;</code> с <code>&lt;th scope=&quot;col&quot;&gt;</code>, либо <code>role=&quot;list&quot;</code>/<code>role=&quot;listitem&quot;</code> с <code>aria-label</code>, объясняющим значение вне визуальной колонки: «Цена: 4 850 000 сум», а не голое число.</p>
+<p><strong>Порядок чтения ваучера.</strong> DOM-порядок: номер заказа → маршрут/услуга → дата и время → пассажир(ы) → место/номер брони у поставщика → что взять с собой → контакты поддержки. Заголовок первого уровня — маршрут или название услуги, не логотип и не слово «Ваучер».</p>
+<p><strong>Печатная версия.</strong> Статус, переданный на экране цветным бейджем, в печати дублируется текстом («Подтверждено» рядом со значком) — лист без цвета не должен превращать разные статусы в одинаковый серый прямоугольник.</p>
+<hr>
+<h2>10. Медленный интернет и дешёвые устройства как часть доступности</h2>
+<p>Пользователь с когнитивной или моторной особенностью на медленном интернете страдает от плохой производительности сильнее среднего: дольше держит внимание на экране, чаще теряет прогресс при подвисании.</p>
+<p><strong>Скелетоны вместо спиннеров.</strong> Загрузка выдачи/деталей/статуса показывает скелетон в форме финального контента, а не бесконечный спиннер — даёт ориентир по объёму заранее и меньше грузит CPU/батарею дешёвого устройства. Сопровождается текстовым статусом в <code>aria-live=&quot;polite&quot;</code> («Загружаем варианты»), не только визуальным скелетоном.</p>
+<p><strong>Обрыв сети.</strong> Формула из <code>docs/voice-and-tone.md</code> §6.6: баннер, что сохранено и что не тронуто (деньги/поиск), кнопка «Повторить», экономный режим (результаты без картинок). Форма оплаты не обнуляет введённые данные карты (кроме CVV).</p>
+<p><strong>Размер шрифтового пакета.</strong> Шрифты нарезаны по скриптам (<code>fonts/*-cyrillic.woff2</code>, <code>*-latin.woff2</code>, <code>*-cyrillic-ext.woff2</code>) и подключаются по языку интерфейса, не одним файлом со всеми алфавитами — меньше вес страницы, быстрее First Contentful Paint на медленном соединении.</p>
+<p><strong>Без больших градиентов и теней.</strong> <code>--mt-shadow-1..3</code> — лёгкие, однослойные, тёплого оттенка, не многослойные color-градиенты: дешевле по перерисовке на слабом GPU и меньше визуального шума для людей с когнитивными особенностями и быстрой утомляемостью зрения.</p>
+<hr>
+<h2>11. Чек-лист приёмки</h2>
+<p><strong>Дизайн</strong></p>
+<ul>
+<li>☐ Каждый статус бронирования передан иконкой + точкой + текстом, не только цветом</li>
+<li>☐ Ни один текст на цветном фоне не ниже AA (4.5:1); денежные/статусные пары — не ниже AA, исключения из §2 явно приняты</li>
+<li>☐ Тап-цели ≥44×44px или имеют невидимый padding до 44px (календарь, плотные списки)</li>
+<li>☐ Между соседними целями ≥8px, если сами цели меньше 44px</li>
+<li>☐ Основной текст ≥16px, поля форм ≥16px</li>
+<li>☐ Ни одно действие не требует drag без альтернативы (2.5.7)</li>
+<li>☐ Таймеры удержания места — с текстом и способом продления или явным объяснением истечения</li>
+</ul>
+<p><strong>Вёрстка</strong></p>
+<ul>
+<li>☐ Все <code>&lt;label&gt;</code> видимы, ни один placeholder не используется как единственная подпись</li>
+<li>☐ <code>inputmode</code>/<code>autocomplete</code> расставлены по таблице §6</li>
+<li>☐ Ошибки формы — <code>aria-describedby</code> + <code>aria-invalid</code>, сводный статус — <code>aria-live=&quot;polite&quot;</code></li>
+<li>☐ Иконки-кнопки — <code>&lt;title&gt;</code> + <code>aria-labelledby</code>, декоративные — <code>aria-hidden=&quot;true&quot;</code></li>
+<li>☐ Фокус виден (<code>:focus-visible</code>, 2px <code>--mt-focus</code>, отступ 2px), ловушка фокуса в модалках/шитах реализована</li>
+<li>☐ Залипающие шапка/нижняя панель оплаты не перекрывают элемент в фокусе (<code>scroll-padding</code>/<code>scroll-margin</code>)</li>
+<li>☐ Скип-линк к <code>&lt;main&gt;</code> есть на страницах с длинными фильтрами</li>
+<li>☐ <code>prefers-reduced-motion</code> учтён в ручных JS-анимациях, не только в CSS</li>
+</ul>
+<p><strong>Тексты</strong></p>
+<ul>
+<li>☐ <code>lang</code> на <code>&lt;html&gt;</code> соответствует языку интерфейса, вставки — в <code>&lt;span lang=&quot;...&quot;&gt;</code></li>
+<li>☐ <code>ʻ</code>/<code>gʻ</code> — U+02BB, апострофы U+0027/U+2019/U+02BC/`<code> </code> `` отсутствуют в uz-строках</li>
+<li>☐ Кнопки/бейджи фиксированной ширины проверены на узбекском — без переноса в 3 строки и обрезки</li>
+<li>☐ Номера рейсов, коды заказов, суммы — <code>nowrap</code>/<code>.mt-num</code></li>
+<li>☐ Текст ошибки — причина, что уже сделано системой, одно действие</li>
+</ul>
+<p><strong>Проверка вручную</strong></p>
+<ul>
+<li>☐ Сценарий покупки пройден только клавиатурой (Tab/Shift+Tab/Enter/Esc), без потери фокуса</li>
+<li>☐ Оплата и ваучер прочитаны VoiceOver (iOS) и TalkBack (Android), порядок чтения логичен</li>
+<li>☐ Зум 200% — контент рефлоуится, ничего не обрезается по горизонтали</li>
+<li>☐ Ширина 360px — кнопки и бейджи не ломаются на трёх языках</li>
+<li>☐ Ваучер распечатан в чёрно-белом режиме — статус читается без цвета</li>
+<li>☐ Список заказов прогнан через <code>forced-colors</code>/<code>grayscale</code> — статусы различимы без цвета</li>
+</ul>
+<hr>
+<h2>12. Как проверять</h2>
+<div class="tablewrap"><table><thead><tr><th>Инструмент</th><th>Что смотреть</th></tr></thead><tbody><tr><td><strong>axe DevTools</strong></td><td>Прогон на ключевых экранах (поиск, карточка, оплата, ваучер): контраст, отсутствующие label, неверные ARIA-атрибуты, дублирующиеся id</td></tr><tr><td><strong>Lighthouse (Accessibility)</strong></td><td>Score как регресс-метрика в CI; смотреть конкретные провалы, не только итоговое число</td></tr><tr><td><strong>VoiceOver Rotor (macOS/iOS)</strong></td><td>Ctrl+Option+U — навигация по заголовкам (иерархия h1→h2), по ссылкам (текст понятен вне контекста), по формам; отдельно ваучер и экран ошибки оплаты</td></tr><tr><td><strong>TalkBack (Android)</strong></td><td>Реальное дешёвое устройство, не только эмулятор — порядок чтения карточки результата и статус-бейджей, скорость озвучки <code>aria-live</code> при смене статуса оплаты</td></tr><tr><td><strong>Эмуляция  0 </strong> (Chrome DevTools → Rendering → <code>forced-colors: active</code>)</td><td>Статусы, кнопки и границы полей остаются различимы под системными цветами High Contrast</td></tr><tr><td><strong>Зум 200%</strong></td><td>Рефлоу без горизонтального скролла, кнопки не обрезаются, залипающие панели не перекрывают контент (2.4.11)</td></tr><tr><td><strong>Печать в ч/б</strong> (Print preview → «Оттенки серого»)</td><td>Ваучер, билет, счёт — статус и сумма читаются без цвета</td></tr><tr><td><strong>Ручная клавиатурная навигация</strong></td><td>Полный путь покупки без мыши: видимость фокуса на каждом шаге, отсутствие ловушек вне модалок, работа Esc в шитах</td></tr></tbody></table></div></main></body></html>

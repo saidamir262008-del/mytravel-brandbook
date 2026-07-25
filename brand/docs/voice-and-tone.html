@@ -1,0 +1,321 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>myTravel — голос и тон — myTravel</title><style>
+:root{--paper:#fbf6ee;--surface:#fff;--fg:#2a211c;--muted:#665d53;--line:#e6ded1;
+ --accent:#a81e2d;--link:#22285c}
+@media (prefers-color-scheme:dark){
+ :root{--paper:#1b1512;--surface:#241c18;--fg:#f3ede3;--muted:#c2b6a6;
+       --line:#3b302a;--accent:#d9525c;--link:#a8b0e0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--fg);
+ font:400 16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+ -webkit-font-smoothing:antialiased}
+main{max-width:82ch;margin:0 auto;padding:32px 24px 96px}
+nav.top{border-bottom:1px solid var(--line);background:var(--surface)}
+nav.top div{max-width:82ch;margin:0 auto;padding:12px 24px;font-size:14px;
+ display:flex;gap:16px;flex-wrap:wrap}
+nav.top a{color:var(--fg)}
+h1{font-size:32px;line-height:1.2;letter-spacing:-.02em;margin:28px 0 16px}
+h2{font-size:24px;line-height:1.25;margin:40px 0 12px;padding-top:14px;
+ border-top:1px solid var(--line)}
+h3{font-size:18px;margin:28px 0 8px}
+h4{font-size:16px;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:var(--link)}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:0 0 6px}
+code{font-family:ui-monospace,"SF Mono","IBM Plex Mono",monospace;font-size:.9em;
+ background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+ padding:14px 16px;overflow-x:auto;margin:0 0 16px}
+pre code{background:none;border:0;padding:0;font-size:13px;line-height:1.55}
+blockquote{margin:0 0 16px;padding:8px 16px;border-left:3px solid var(--accent);
+ color:var(--muted)}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.tablewrap{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;
+ letter-spacing:.04em}
+strong{font-weight:600}
+</style></head><body><nav class="top"><div><a href="../../index.html">← Выбор логотипа</a><a href="../brandbook.html">Брендбук</a><a href="voice-and-tone.html">Тон и слова</a><a href="usage-rules.html">Правила использования</a><a href="accessibility.html">Доступность</a></div></nav><main><h1>myTravel — голос и тон</h1>
+<p>Документ для всех, кто пишет текст в продукте: интерфейс, письма, push, поддержка, промо. Языки продукта: русский (основной), узбекский (латиница), английский.</p>
+<hr>
+<h2>1. Кто мы такие голосом</h2>
+<p>myTravel говорит как спокойный взрослый, который делал это сто раз. Человек открывает нас с телефона, часто в спешке, часто на медленном интернете, часто впервые в жизни платит за поездку онлайн — и боится, что деньги уйдут в никуда. Наша работа голосом: снять этот страх фактами, а не бодростью. Мы называем сумму, срок и последствие до кнопки оплаты, объясняем, что уже произошло и что делать дальше, и никогда не обещаем за поставщика того, чего сами не контролируем. Айдентика ABR — тёплая, ремесленная, дисциплинированная; текст такой же: человеческий, но собранный.</p>
+<p><strong>Три принципа</strong></p>
+<ol>
+<li><strong>Сначала факт, потом вежливость.</strong> Первое предложение отвечает на вопрос «что с моими деньгами и моей поездкой». Извинения и объяснения — после.</li>
+<li><strong>Активный залог и подлежащее.</strong> Всегда видно, кто действует: мы, банк, авиакомпания или вы. «Мы вернём деньги», не «денежные средства будут возвращены».</li>
+<li><strong>Мы отвечаем только за своё.</strong> Мы гарантируем то, что делаем сами (отправили запрос, держим место, вернём деньги). Всё, что решает поставщик, называем ожиданием, а не обещанием.</li>
+</ol>
+<hr>
+<h2>2. Оси тона</h2>
+<p>Четыре шкалы. Мы стоим ближе к левому краю, но ошибка начинается там, где указано.</p>
+<div class="tablewrap"><table><thead><tr><th>Шкала</th><th>Где мы стоим</th><th>Где начинается ошибка</th></tr></thead><tbody><tr><td>Тёплый ↔ фамильярный</td><td>Обращаемся по имени, пишем «мы» и «вы», допускаем короткое человеческое «понимаем, это неприятно»</td><td>«Дружище», «ловите билетики», сленг, подмигивание, шутки про деньги, восклицательные знаки</td></tr><tr><td>Краткий ↔ обрывочный</td><td>Одна мысль — одно предложение. Экран ошибки укладывается в 3 предложения</td><td>Текст без подлежащего («Ошибка. Повторите»), обрубленные сообщения, из которых непонятно, списаны деньги или нет</td></tr><tr><td>Уверенный ↔ самонадеянный</td><td>«Мы вернём 840 000 сум в течение 5 рабочих дней» — это наш процесс, мы за него отвечаем</td><td>«Авиакомпания подтвердит через 5 минут», «виза точно будет» — обещание за того, кем мы не управляем</td></tr><tr><td>Простой ↔ снисходительный</td><td>Объясняем термин поставщика человеческими словами: «невозвратный тариф — деньги не вернутся, даже если вы заболеете»</td><td>«Как известно каждому», «просто нажмите, это же элементарно», объяснение очевидного второй раз, обвинение пользователя в непонимании</td></tr></tbody></table></div>
+<hr>
+<h2>3. Тон по ситуациям</h2>
+<div class="tablewrap"><table><thead><tr><th>Ситуация</th><th>Регистр</th><th>Что нельзя</th></tr></thead><tbody><tr><td>Поиск и выдача</td><td>Нейтрально-служебный, максимум цифр, минимум прилагательных. Цена, время в пути, багаж, возвратность — в одном блоке</td><td>Оценочные слова («отличный вариант», «выгодно»), «дешёвые билеты», цена без указания, что входит; условия возврата мельче цены</td></tr><tr><td>Ожидание оплаты (3-D Secure, обработка)</td><td>Спокойно и конкретно: что происходит сейчас, сколько это займёт, что не нужно делать</td><td>«Пожалуйста, подождите» без срока; «не закрывайте страницу» без объяснения последствий; крутящийся индикатор без текста</td></tr><tr><td>Успех</td><td>Короткое подтверждение + где лежит ваучер + что делать в аэропорту</td><td>Праздник, «поздравляем», эмодзи, восклицательные знаки, немедленный апсейл поверх подтверждения</td></tr><tr><td>Ошибка оплаты</td><td>Формула: что случилось → что уже сделали мы → одно конкретное действие</td><td>«Что-то пошло не так», «Упс», технические коды без расшифровки, намёк, что виноват пользователь, молчание про судьбу денег</td></tr><tr><td>Отмена со штрафом</td><td>Сухая арифметика: заплачено, штраф, к возврату, срок возврата, необратимость</td><td>Прятать штраф за «подробнее», показывать процент без суммы в сумах, уговаривать остаться, окрашивать кнопку отмены в серое «для незаметности»</td></tr><tr><td>Задержка от поставщика</td><td>Честно: запрос отправлен, ответа пока нет, вот срок и вот что будет, если откажут</td><td>«Уже почти готово», новый срок без основания, «заявка обрабатывается», перекладывание вины на поставщика в осуждающем тоне</td></tr><tr><td>Поддержка</td><td>Человеческий, от первого лица, с именем оператора. Признаём проблему, называем следующий шаг и время</td><td>Шаблонное «просим прощения за неудобства», просьба «проявить понимание», ответ без действия, обвинение («вы ввели неверные данные»)</td></tr><tr><td>Промо и рассылка</td><td>Информативно: направление, цена от, даты, до какого числа держится цена — и только если это факт от поставщика</td><td>Поддельная срочность («осталось 2 места!!!», «только сегодня»), если это не подтверждённые данные поставщика; таймеры, которые перезапускаются; «скидка 70%» без базовой цены; восклицательные знаки</td></tr></tbody></table></div>
+<p><strong>Про срочность отдельно.</strong> Фразу вида «осталось 2 места» пишем только тогда, когда поставщик действительно вернул остаток по этому тарифу, и добавляем источник: <code>По данным авиакомпании, по этой цене осталось 2 места</code>. Если данных нет — не пишем ничего. Таймер показываем только там, где он настоящий: время удержания места или срок действия цены.</p>
+<hr>
+<h2>4. Словарь: пиши так / не пиши так</h2>
+<div class="tablewrap"><table><thead><tr><th>Не пиши</th><th>Пиши</th><th>Почему</th></tr></thead><tbody><tr><td>денежные средства будут возвращены</td><td>мы вернём деньги</td><td>Канцелярит и пассив: непонятно, кто вернёт и вернёт ли</td></tr><tr><td>ваша заявка обрабатывается</td><td>отправили запрос авиакомпании, ответ обычно в течение 15 минут</td><td>«Обрабатывается» ничего не говорит о сроке и о том, кто именно думает</td></tr><tr><td>Упс! Что-то пошло не так</td><td>Банк отклонил платёж. Деньги не списаны</td><td>«Упс» превращает потерю денег в шутку и не даёт ни причины, ни следующего шага</td></tr><tr><td>Оформить заказ</td><td>Оплатить 4 850 000 сум</td><td>Кнопка должна называть действие и сумму, а не бюрократическую процедуру</td></tr><tr><td>Данные пассажира</td><td>Кто летит. Имя латиницей, как в паспорте</td><td>«Данные» — язык формы, а не человека; уточнение снимает половину ошибок ввода</td></tr><tr><td>бронь, бронирование</td><td>заказ, место, номер в отеле, машина</td><td>Разговорное «бронь» и тяжёлое «бронирование» смешивают процесс и результат; конкретное существительное понятнее</td></tr><tr><td>дешёвые билеты</td><td>билеты от 1 250 000 сум</td><td>«Дешёвый» звучит как «плохой» и ничего не обещает; цифра обещает</td></tr><tr><td>в кратчайшие сроки</td><td>в течение 15 минут; до 3 рабочих дней</td><td>Срок без числа — не срок</td></tr><tr><td>Просим прощения за причинённые неудобства</td><td>Извините. Мы вернули деньги и держим для вас место до 18:40</td><td>Шаблон читается как отписка; извинение работает только рядом с действием</td></tr><tr><td>кликните</td><td>нажмите, выберите, откройте</td><td>Половина пользователей на телефоне — там нет клика</td></tr><tr><td>Личный кабинет</td><td>Мои поездки, Профиль</td><td>Банковский термин; человек ищет свои поездки, а не кабинет</td></tr><tr><td>Вы, Ваш (с большой буквы)</td><td>вы, ваш</td><td>Заглавная «Вы» — норма бумажного письма; на экране выглядит подобострастно и ломает ритм. Исключение: адресное письмо одному человеку по имени — всё равно строчная</td></tr><tr><td>Оплата прошла успешно!</td><td>Оплата прошла</td><td>Восклицательный знак повышает голос там, где достаточно факта. В интерфейсе допустим ноль восклицательных знаков</td></tr><tr><td>Ваш билет готов + эмодзи (хлопушка, самолёт, галочка)</td><td>Ваучер готов</td><td>Эмодзи ломают вёрстку в трёх языках, плохо читаются скринридером и выглядят несерьёзно рядом с суммой в миллионы сум</td></tr><tr><td>Мы не несём ответственности за решение консульства</td><td>Решение принимает консульство. Мы готовим документы и следим за сроками</td><td>Первая формулировка защищает нас, вторая объясняет расклад и всё равно защищает</td></tr><tr><td>Трансфер будет осуществлён</td><td>Водитель встретит вас в зале прилёта с табличкой myTravel</td><td>Пассив без исполнителя; человеку нужно знать, кого и где искать</td></tr><tr><td>Стоимость составляет 4 850 000 сум</td><td>Цена: 4 850 000 сум</td><td>Короче на три слова, ничего не теряется</td></tr><tr><td>Необходимо предоставить документы</td><td>Пришлите паспорт и справку с работы</td><td>Называем конкретные документы и конкретное действие</td></tr><tr><td>Уважаемый клиент!</td><td>Саидумар, добрый день</td><td>Обезличенное обращение — сигнал массовой рассылки</td></tr><tr><td>Бесплатная отмена*</td><td>Отмена без штрафа до 4 августа, 18:00</td><td>Звёздочка и мелкий шрифт — тёмный паттерн; условие пишем сразу и тем же кеглем</td></tr><tr><td>Ошибка 4302</td><td>Банк отклонил платёж (код 4302)</td><td>Код нужен поддержке, человеку нужна причина. Порядок: причина, потом код</td></tr><tr><td>Вы ввели неверные данные карты</td><td>Карта не прошла проверку. Проверьте срок действия и CVV</td><td>Не обвиняем; называем, что именно проверить</td></tr></tbody></table></div>
+<hr>
+<h2>5. Числа, даты, деньги, имена</h2>
+<h3>Деньги</h3>
+<ul>
+<li>Суммы в сумах — с разделением разрядов неразрывным пробелом (U+00A0) и словом «сум» после числа, строчными:</li>
+</ul>
+<p>``<code> 4 850 000 сум </code>`<code> Не пишем: </code>4850000 UZS<code>, </code>4.850.000<code>, </code>4,85 млн<code>, </code>4 850 000,00 сум`.</p>
+<ul>
+<li>Копеек в сумах нет. Дробную часть не показываем никогда.</li>
+<li>Узбекский: <code>4 850 000 soʻm</code>. Английский: <code>4,850,000 UZS</code> (запятая как разделитель разрядов, код валюты — потому что «sum» нечитаем для иностранца).</li>
+<li>Зарубежные услуги, где поставщик выставляет счёт в валюте: сначала валюта поставщика, потом ориентир в сумах и дата курса.</li>
+</ul>
+<p>``<code> 320 USD — около 4 100 000 сум по курсу ЦБ на 25 июля </code>`` Слово «около» обязательно: точную сумму списания определяет банк.</p>
+<ul>
+<li>Штраф и невозвратность пишем тем же кеглем и в том же блоке, что и цену, всегда до кнопки оплаты.</li>
+</ul>
+<h3>Даты</h3>
+<div class="tablewrap"><table><thead><tr><th>Язык</th><th>Полная</th><th>Короткая</th><th>Числовая (формы, таблицы)</th></tr></thead><tbody><tr><td>ru</td><td>12 августа 2026</td><td>12 авг</td><td>12.08.2026</td></tr><tr><td>uz</td><td>2026-yil 12-avgust</td><td>12-avg</td><td>12.08.2026</td></tr><tr><td>en</td><td>12 August 2026</td><td>12 Aug</td><td>2026-08-12</td></tr></tbody></table></div>
+<ul>
+<li>В английском числовую дату пишем только в формате ISO: <code>2026-08-12</code>. Форматы <code>08/12/2026</code> запрещены — читаются и как 12 августа, и как 8 декабря.</li>
+<li>Диапазон — с коротким тире без пробелов внутри числа: <code>4–7 августа</code>, <code>4–7 avgust</code>, <code>4–7 August</code>.</li>
+<li>Год не пишем, если поездка в текущем году.</li>
+</ul>
+<h3>Время</h3>
+<ul>
+<li>Только 24-часовой формат, двоеточие, ведущий ноль: <code>04:35</code>, <code>18:40</code>. Никогда <code>4:35 AM</code>.</li>
+<li>Часовой пояс указываем, когда время не ташкентское: <code>18:40 по местному времени в Стамбуле</code>.</li>
+<li>Длительность: <code>9 ч 15 мин</code>, <code>9 soat 15 daqiqa</code>, <code>9h 15m</code>.</li>
+</ul>
+<h3>Имена</h3>
+<ul>
+<li>В полях пассажира — латиница ровно как в паспорте, заглавными, в порядке «фамилия, имя»: <code>USMONOV JASUR</code>. Модификатор <code>ʻ</code> и диакритику в паспортных полях не используем: в машиночитаемой зоне их нет, и авиакомпания не примет.</li>
+<li>В обращении к человеку — обычное написание и только имя: <code>Саидумар</code>, <code>Jasur</code>.</li>
+<li>Подпись оператора поддержки — имя и роль: <code>Дилноза, поддержка myTravel</code>.</li>
+</ul>
+<h3>Топонимы</h3>
+<div class="tablewrap"><table><thead><tr><th>Контекст</th><th>Написание</th></tr></thead><tbody><tr><td>Узбекский интерфейс</td><td>Toshkent, Samarqand, Buxoro, Urganch</td></tr><tr><td>Русский интерфейс</td><td>Ташкент, Самарканд, Бухара, Ургенч</td></tr><tr><td>Английский интерфейс</td><td>Tashkent, Samarkand, Bukhara, Urgench</td></tr><tr><td>Код аэропорта, номер рейса</td><td>TAS, SKD, TK 371 — латиница, без изменений во всех языках</td></tr></tbody></table></div>
+<h3>Буква <code>oʻ</code> / <code>gʻ</code> — обязательное правило</h3>
+<p>В узбекской латинице <code>oʻ</code> и <code>gʻ</code> пишутся с символом <strong>U+02BB MODIFIER LETTER TURNED COMMA</strong> (<code>ʻ</code>). Это часть буквы, а не знак препинания.</p>
+<pre><code>Правильно:   oʻ  gʻ    →  toʻlov, oʻzgartirish, bogʻlanish, Gʻijduvon
+Неправильно: o&#x27;  g&#x27;    →  ASCII-апостроф U+0027
+Неправильно: o’  g’    →  типографская кавычка U+2019
+Неправильно: oʼ  gʼ    →  U+02BC modifier letter apostrophe
+Неправильно: oʻ  →  «o` » с обратной кавычкой U+0060</code></pre>
+<ul>
+<li>В текстах, макетах, JSON-локализациях, письмах, push и SMS — только U+02BB.</li>
+<li>Апостроф <code>ʼ</code> (U+02BC) в узбекском используется отдельно, для обозначения гортанной смычки в словах вроде <code>sanʼat</code>, <code>maʼlumot</code>. Не путать с <code>ʻ</code>: это разные символы и разные функции.</li>
+<li>Перед сдачей файла локализации прогоняем поиск по <code>&#x27;</code> и <code>’</code> в uz-строках — их там быть не должно.</li>
+</ul>
+<hr>
+<h2>6. Готовые тексты (ru / uz-latin / en)</h2>
+<h3>6.1. Пустой поиск: ничего не нашли на выбранные даты</h3>
+<p><em>Где показывается: экран результатов поиска, состояние «ничего не найдено».</em></p>
+<pre><code>ru
+На эти даты ничего не нашли.
+Мы проверили 12 поставщиков — свободных мест по вашему маршруту нет.
+Сдвиньте дату на один-два дня или выберите соседний аэропорт: Samarqand (SKD), 4 часа на поезде от Ташкента.</code></pre>
+<pre><code>uz
+Bu kunlarga hech narsa topilmadi.
+12 ta yetkazib beruvchini tekshirdik — sizning marshrutingizda boʻsh joy yoʻq.
+Sanani bir-ikki kunga suring yoki yondosh aeroportni tanlang: Samarqand (SKD), Toshkentdan poyezdda 4 soat.</code></pre>
+<pre><code>en
+Nothing available for these dates.
+We checked 12 suppliers and found no seats on your route.
+Shift your dates by a day or two, or try a nearby airport: Samarkand (SKD), four hours from Tashkent by train.</code></pre>
+<h3>6.2. Ошибка оплаты: банк отклонил платёж</h3>
+<p><em>Где показывается: экран оплаты после отказа эквайринга, полноэкранное состояние ошибки.</em></p>
+<pre><code>ru
+Банк отклонил платёж.
+Деньги не списаны — в выписке этой операции не будет. Ваши места мы держим ещё 14 минут.
+Попробуйте другую карту. Если и она не пройдёт, позвоните в банк: причину отказа знают только там (код операции 4302).</code></pre>
+<pre><code>uz
+Bank toʻlovni rad etdi.
+Pul hisobingizdan yechilmadi — koʻchirmada bu amaliyot koʻrinmaydi. Joylaringizni yana 14 daqiqa saqlab turamiz.
+Boshqa karta bilan urinib koʻring. Agar u ham oʻtmasa, bankka qoʻngʻiroq qiling: rad etish sababini faqat ular biladi (amaliyot kodi 4302).</code></pre>
+<pre><code>en
+Your bank declined the payment.
+No money was taken — this transaction will not appear on your statement. We are holding your seats for another 14 minutes.
+Try a different card. If that one is declined too, call your bank: only they can tell you the reason (transaction code 4302).</code></pre>
+<h3>6.3. Ждём подтверждение от поставщика</h3>
+<p><em>Где показывается: экран после успешной оплаты, пока авиакомпания не подтвердила место. Над текстом — таймер удержания.</em></p>
+<pre><code>ru
+Оплата прошла. Ждём подтверждение авиакомпании.
+Место держим до 12:41. Обычно ответ приходит в течение 15 минут.
+Приложение можно закрыть: ваучер придёт на почту и появится в «Моих поездках». Если авиакомпания откажет, мы вернём всю сумму на эту же карту в течение 3 рабочих дней.</code></pre>
+<pre><code>uz
+Toʻlov oʻtdi. Aviakompaniya tasdigʻini kutamiz.
+Joyni 12:41 gacha saqlab turamiz. Javob odatda 15 daqiqa ichida keladi.
+Ilovani yopishingiz mumkin: vaucher pochtangizga keladi va «Mening safarlarim»da paydo boʻladi. Aviakompaniya rad etsa, butun summani shu kartaga 3 ish kuni ichida qaytaramiz.</code></pre>
+<pre><code>en
+Payment went through. We are waiting for the airline to confirm.
+Your seat is held until 12:41. The answer usually arrives within 15 minutes.
+You can close the app: the voucher will be emailed to you and will appear in My trips. If the airline declines, we will refund the full amount to the same card within 3 working days.</code></pre>
+<h3>6.4. Отмена аренды авто со штрафом 30%</h3>
+<p><em>Где показывается: экран подтверждения отмены, до необратимого действия. Сумма штрафа и сумма возврата — тем же кеглем, что цена.</em></p>
+<pre><code>ru
+Отменить аренду Chevrolet Cobalt, 4–7 августа, Toshkent
+
+До начала аренды меньше 48 часов. По условиям прокатной компании в этот срок отмена стоит 30% от суммы.
+
+Вы заплатили:      1 200 000 сум
+Штраф 30%:           360 000 сум
+Вернём на карту:     840 000 сум
+
+Деньги придут на карту, с которой платили, в течение 5 рабочих дней.
+Отмена необратима: вернуть эту машину по этой цене мы не сможем.
+
+[ Отменить аренду и получить 840 000 сум ]   [ Не отменять ]</code></pre>
+<pre><code>uz
+Chevrolet Cobalt ijarasini bekor qilish, 4–7 avgust, Toshkent
+
+Ijara boshlanishiga 48 soatdan kam qoldi. Ijara kompaniyasi shartlariga koʻra, bu muddatda bekor qilish summaning 30% ini tashkil etadi.
+
+Siz toʻlagansiz:     1 200 000 soʻm
+Jarima 30%:            360 000 soʻm
+Kartaga qaytaramiz:    840 000 soʻm
+
+Pul toʻlov qilgan kartangizga 5 ish kuni ichida tushadi.
+Bekor qilishni ortga qaytarib boʻlmaydi: bu mashinani shu narxda qaytarib bera olmaymiz.
+
+[ Ijarani bekor qilish va 840 000 soʻm olish ]   [ Bekor qilmaslik ]</code></pre>
+<pre><code>en
+Cancel Chevrolet Cobalt rental, 4–7 August, Tashkent
+
+Pick-up is less than 48 hours away. Under the rental company&#x27;s terms, cancelling within this window costs 30% of the total.
+
+You paid:            1,200,000 UZS
+Penalty (30%):         360,000 UZS
+Refund to your card:   840,000 UZS
+
+The refund goes back to the card you paid with within 5 working days.
+Cancellation is final: we will not be able to get this car back at this price.
+
+[ Cancel rental and get 840,000 UZS ]   [ Keep the rental ]</code></pre>
+<blockquote>Примечание для верстальщика: суммы во всех трёх языках совпадают до сума, выровнены по правому краю в одной колонке и набраны тем же кеглем, что цена в карточке. Кнопка отмены и кнопка «Не отменять» — одного размера и одного веса; ни одну из них не делаем бледнее.</blockquote>
+<h3>6.5. Успешная оплата и ваучер</h3>
+<p><em>Где показывается: финальный экран покупки авиабилета, а также верх страницы заказа в «Моих поездках».</em></p>
+<pre><code>ru
+Оплачено. Ваучер готов.
+Turkish Airlines подтвердила ваши места: TK 371, Toshkent — Istanbul, 12 августа, 04:35.
+Ваучер и электронный билет отправили на почту и сохранили в «Моих поездках» — они открываются без интернета.
+В аэропорту нужен паспорт и номер заказа MT-4471982. Регистрация закрывается за 60 минут до вылета.</code></pre>
+<pre><code>uz
+Toʻlandi. Vaucher tayyor.
+Turkish Airlines joylaringizni tasdiqladi: TK 371, Toshkent — Istanbul, 12-avgust, 04:35.
+Vaucher va elektron chiptani pochtangizga yubordik hamda «Mening safarlarim»da saqladik — ular internetsiz ham ochiladi.
+Aeroportda pasport va MT-4471982 buyurtma raqami kerak. Roʻyxatdan oʻtish parvozdan 60 daqiqa oldin yopiladi.</code></pre>
+<pre><code>en
+Paid. Your voucher is ready.
+Turkish Airlines has confirmed your seats: TK 371, Tashkent — Istanbul, 12 August, 04:35.
+We have emailed the voucher and e-ticket and saved them in My trips, where they open without an internet connection.
+At the airport you need your passport and order number MT-4471982. Check-in closes 60 minutes before departure.</code></pre>
+<h3>6.6. Потеря соединения / медленный интернет</h3>
+<p><em>Где показывается: баннер поверх любого экрана при обрыве сети; полноэкранное состояние — только на шаге оплаты.</em></p>
+<pre><code>ru
+Связь пропала.
+Поиск и выбранные места мы сохранили, оплату не начинали — деньги не тронуты.
+Когда сеть вернётся, нажмите «Повторить». Если интернет медленный, включите экономный режим: он грузит выдачу без картинок.</code></pre>
+<pre><code>uz
+Aloqa uzildi.
+Qidiruv va tanlagan joylaringizni saqlab qoʻydik, toʻlovni boshlamadik — pulingizga tegilmadi.
+Tarmoq qaytganda «Qayta urinish» ni bosing. Internet sekin boʻlsa, tejamkor rejimni yoqing: u natijalarni rasmlarsiz yuklaydi.</code></pre>
+<pre><code>en
+Connection lost.
+We saved your search and the seats you picked. No payment was started, so your money is untouched.
+When you are back online, tap Retry. On a slow connection, switch on data-saver mode: it loads results without images.</code></pre>
+<h3>6.7. Push-уведомление о подтверждении</h3>
+<p><em>Где показывается: системное push-уведомление. Ограничение — около 120 знаков, включая пробелы: дальше Android и iOS обрезают текст в свёрнутом виде.</em></p>
+<pre><code>ru (77 знаков)
+Turkish Airlines подтвердила ваши места. Ваучер в «Моих поездках» и на почте.</code></pre>
+<pre><code>uz (85 знаков)
+Turkish Airlines joylaringizni tasdiqladi. Vaucher «Mening safarlarim»da va pochtada.</code></pre>
+<pre><code>en (85 знаков)
+Turkish Airlines confirmed your seats. Your voucher is in My trips and in your email.</code></pre>
+<h3>6.8. Письмо-подтверждение: тема и первый абзац</h3>
+<p><em>Где показывается: транзакционное письмо после подтверждения от поставщика.</em></p>
+<pre><code>ru
+Тема: Ваучер: Toshkent — Istanbul, 12 августа, заказ MT-4471982
+
+Саидумар, добрый день. Turkish Airlines подтвердила ваши места на рейс TK 371, Toshkent — Istanbul, 12 августа, вылет 04:35. Ваучер и электронный билет приложены к этому письму в PDF — распечатывать не нужно, но сохраните файл в телефоне: в аэропорту может не быть интернета.</code></pre>
+<pre><code>uz
+Mavzu: Vaucher: Toshkent — Istanbul, 12-avgust, MT-4471982 buyurtma
+
+Jasur, assalomu alaykum. Turkish Airlines TK 371 parvoziga joylaringizni tasdiqladi: Toshkent — Istanbul, 12-avgust, uchish 04:35. Vaucher va elektron chipta shu xatga PDF holida ilova qilindi — chop etish shart emas, lekin faylni telefoningizga saqlab qoʻying: aeroportda internet boʻlmasligi mumkin.</code></pre>
+<pre><code>en
+Subject: Voucher: Tashkent — Istanbul, 12 August, order MT-4471982
+
+Hello Jasur. Turkish Airlines has confirmed your seats on flight TK 371, Tashkent — Istanbul, 12 August, departing 04:35. The voucher and e-ticket are attached to this email as PDFs. You do not need to print them, but do save the files to your phone: there may be no internet at the airport.</code></pre>
+<h3>6.9. Экран визы: запись на онлайн-встречу с консультантом</h3>
+<p><em>Где показывается: карточка категории «Виза», шаг выбора времени встречи.</em></p>
+<pre><code>ru
+Виза: сначала 20 минут с консультантом
+Живой человек по видеосвязи смотрит ваши документы и говорит, чего не хватает, — до того как вы заплатите консульский сбор.
+Встреча стоит 150 000 сум и вычитается из стоимости оформления, если вы продолжите с нами.
+Решение по визе принимает консульство, а не мы. Мы собираем документы, проверяем их и следим за сроками.
+Ближайшее время: сегодня 16:30, завтра 10:00 и 14:00. Разговор на узбекском, русском или английском — выберите язык при записи.</code></pre>
+<pre><code>uz
+Viza: avval konsultant bilan 20 daqiqa
+Konsultant video aloqada hujjatlaringizni koʻrib chiqadi va nimalar yetishmayotganini aytadi — siz konsullik yigʻimini toʻlashdan oldin.
+Uchrashuv 150 000 soʻm turadi va agar biz bilan davom etsangiz, rasmiylashtirish narxidan chiqarib tashlanadi.
+Viza boʻyicha qarorni konsullik qabul qiladi, biz emas. Biz hujjatlarni yigʻamiz, tekshiramiz va muddatlarni kuzatamiz.
+Eng yaqin vaqt: bugun 16:30, ertaga 10:00 va 14:00. Suhbat oʻzbek, rus yoki ingliz tilida — yozilishda tilni tanlang.</code></pre>
+<pre><code>en
+Visa: start with a 20-minute consultation
+A consultant reviews your documents over video and tells you what is missing — before you pay any consular fee.
+The consultation costs 150,000 UZS, and we deduct it from the service fee if you continue with us.
+The consulate decides on your visa, not us. We collect and check the documents and keep track of the deadlines.
+Next available: today 16:30, tomorrow 10:00 and 14:00. The call can be in Uzbek, Russian or English — pick a language when you book.</code></pre>
+<h3>6.10. Карго: посылка на складе в Ташкенте</h3>
+<p><em>Где показывается: экран отслеживания карго, текущий статус.</em></p>
+<pre><code>ru
+Посылка на складе в Ташкенте
+Приняли сегодня в 11:20. Вес 4,2 кг, трек CG-88214703.
+Ближайшая отправка в Москву — в пятницу, 1 августа. В пути обычно 9–12 дней.
+Дату выезда машины называет перевозчик. Мы напишем в тот же час, когда она выйдет со склада.</code></pre>
+<pre><code>uz
+Yuk Toshkentdagi omborda
+Bugun 11:20 da qabul qildik. Vazni 4,2 kg, kuzatuv raqami CG-88214703.
+Moskvaga eng yaqin joʻnatish — juma, 1-avgust. Yoʻlda odatda 9–12 kun.
+Mashinaning chiqish sanasini tashuvchi belgilaydi. Ombordan chiqishi bilan sizga xabar beramiz.</code></pre>
+<pre><code>en
+Your parcel is at our Tashkent warehouse
+Received today at 11:20. Weight 4.2 kg, tracking number CG-88214703.
+The next departure for Moscow is Friday, 1 August. Transit usually takes 9–12 days.
+The carrier sets the departure date. We will message you the moment the truck leaves the warehouse.</code></pre>
+<hr>
+<h2>7. Чего мы не делаем никогда</h2>
+<ol>
+<li><strong>Не используем поддельную срочность.</strong> Никаких «осталось 2 места», «только сегодня», перезапускающихся таймеров и счётчиков «сейчас смотрят 37 человек», если за цифрой не стоит реальный ответ поставщика.</li>
+<li><strong>Не прячем условия.</strong> Штраф, невозвратность, срок бесплатной отмены, сервисный сбор — тем же кеглем, что цена, и до кнопки оплаты. Ссылка «Подробнее» дополняет условие, а не заменяет его.</li>
+<li><strong>Не добавляем сборы после выбора.</strong> Итоговая сумма на кнопке оплаты равна сумме, которую человек увидел в выдаче, либо мы объясняем разницу отдельной строкой до кнопки.</li>
+<li><strong>Не подталкиваем тёмными паттернами.</strong> Не предвыбираем страховку и платные услуги, не делаем кнопку отказа бледнее кнопки согласия, не прячем отмену в подвале, не задаём вопросов вида «Нет, я не хочу защитить свою поездку».</li>
+<li><strong>Не обвиняем пользователя.</strong> Никогда «вы ввели неверные данные». Пишем, что именно проверить.</li>
+<li><strong>Не шутим в момент потери денег.</strong> На экранах ошибки оплаты, отмены со штрафом, отказа поставщика и невозврата — ноль шуток, ноль эмодзи, ноль восклицательных знаков.</li>
+<li><strong>Не обещаем за поставщика.</strong> Мы не пишем «авиакомпания подтвердит», «виза будет одобрена», «отель точно даст ранний заезд». Пишем «отправили запрос», «обычно приходит в течение…», «решает консульство».</li>
+<li><strong>Не продаём поверх подтверждения.</strong> На экране успешной оплаты и в письме с ваучером апсейла нет. Предложение трансфера и страховки приходит отдельным сообщением позже.</li>
+</ol>
+<hr>
+<h2>8. Чек-лист редактора перед публикацией</h2>
+<ul>
+<li>☐ В первом предложении есть ответ на вопрос «что с моими деньгами и моей поездкой».</li>
+<li>☐ Все глаголы в активном залоге; у каждого действия виден исполнитель (мы, банк, авиакомпания, вы).</li>
+<li>☐ Штраф, срок и невозвратность стоят тем же кеглем, что цена, и выше кнопки оплаты.</li>
+<li>☐ Все суммы — в формате <code>4 850 000 сум</code>, без дробной части, разряды через неразрывный пробел; во всех трёх языках цифры совпадают.</li>
+<li>☐ Каждый срок выражен числом («в течение 15 минут», «до 3 рабочих дней»), а не «в кратчайшие сроки».</li>
+<li>☐ Текст ошибки содержит три части: что случилось, что уже сделала система, одно конкретное действие пользователя.</li>
+<li>☐ Нет обещаний за поставщика; ожидания сформулированы как «отправили запрос» и «обычно приходит».</li>
+<li>☐ Ноль восклицательных знаков, ноль эмодзи, ноль «Вы» с большой буквы, ноль слов из левой колонки словаря.</li>
+<li>☐ Даты и время соответствуют формату своего языка; в английском числовая дата только ISO.</li>
+<li>☐ В узбекском тексте <code>oʻ</code> и <code>gʻ</code> набраны через U+02BB; поиск по <code>&#x27;</code>, <code>’</code> и `<code> </code> `` в uz-строках не даёт совпадений.</li>
+</ul>
+<hr>
+<h2>9. Что проверить на узбекском отдельно</h2>
+<ol>
+<li><strong>Длина.</strong> Узбекский текст обычно на 10–20% длиннее русского из-за агглютинации: <code>tasdiqlanmaganligi sababli</code> против «поскольку не подтверждено». Проверяйте на iPhone SE и на кнопках фиксированной ширины: <code>[ Ijarani bekor qilish va 840 000 soʻm olish ]</code> не должно переноситься в три строки или обрезаться многоточием. Если не влезает — сокращайте узбекский текст, а не уменьшайте шрифт кнопки.</li>
+<li><strong>Порядок слов в датах и суммах.</strong> По-узбекски год идёт первым и с дефисом: <code>2026-yil 12-avgust</code>, число месяца тоже с дефисом: <code>12-avgust</code>. Валюта — после числа: <code>840 000 soʻm</code>. Автоподстановка вида <code>avgust 12, 2026</code> — ошибка локализации, а не стилистика.</li>
+<li><strong>Символ  0 .</strong> Проверяйте каждую строку: переводчики, копирующие текст из Word или Telegram, приносят <code>o&#x27;</code>, <code>o’</code> или <code>o</code><code> </code>. Отдельно проверьте, что апостроф гортанной смычки в словах <code>sanʼat</code>, <code>maʼlumot</code> набран как U+02BC и не заменён на <code>ʻ</code>.</li>
+<li><strong>Согласование падежей в шаблонах.</strong> Строки с подстановкой ломаются: <code>{city}dan {city}ga</code> требует, чтобы аффикс зависел от последней буквы города (<code>Toshkentdan</code>, но <code>Buxorodan</code>). Не собирайте узбекские фразы конкатенацией — держите полные варианты строк или пишите нейтрально: <code>Marshrut: Toshkent — Istanbul</code>.</li>
+<li><strong>Только латиница.</strong> Узбекская кириллица в продукте не поддерживается — ни в интерфейсе, ни в письмах, ни в поддержке. Переключатель языка содержит ровно три пункта: <code>ru / uz / en</code>. Если пользователь пишет в поддержку узбекской кириллицей, отвечаем латиницей и не извиняемся за это — просто отвечаем.</li>
+</ol></main></body></html>
