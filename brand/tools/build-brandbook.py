@@ -21,14 +21,18 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BOOK = ROOT / "brandbook.html"
 
 LOGO_ORDER = [
-    ("logo-primary", "Основной"),
-    ("logo-inverse", "Инверсия"),
-    ("logo-mono", "Монохром"),
-    ("logo-horizontal", "Компактный"),
-    ("logo-vertical", "Вертикальный"),
-    ("logo-mark", "Знак"),
-    ("logo-favicon", "Favicon"),
+    ("mytravel-primary", "Основной"),
+    ("mytravel-primary-inverse", "Инверсия"),
+    ("mytravel-primary-mono", "Монохром"),
+    ("mytravel-stacked", "Компактный"),
+    ("mytravel-vertical", "Вертикальный"),
+    ("mytravel-plaque", "В плашке"),
+    ("mytravel-mark", "Только приём"),
+    ("mytravel-descriptor", "С дескриптором"),
+    ("mytravel-micro", "Микро"),
     ("app-icon", "Иконка приложения"),
+    ("tile-anor", "Плитка"),
+    ("favicon", "Favicon"),
 ]
 
 CAT_ORDER = [

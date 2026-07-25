@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>anim-loader — myTravel</title>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fbf6ee;color:#2a211c;
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:22px;margin:0 0 6px;letter-spacing:-.01em}
+h1 b{color:#a81e2d}
+.lede{margin:0 0 22px;max-width:62ch;color:#2a211c;opacity:.72}
+h2{font-size:12px;letter-spacing:.09em;text-transform:uppercase;opacity:.5;
+  margin:44px 0 12px;font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 28px;padding:0;list-style:none}
+.meta li{font:12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  border:1px solid rgba(42,33,28,.18);border-radius:999px;padding:7px 11px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+button{font:inherit;font-size:14px;cursor:pointer;border:1px solid rgba(42,33,28,.2);
+  background:#fff;color:#2a211c;border-radius:9px;padding:8px 14px}
+button:hover{border-color:#a81e2d;color:#a81e2d}
+button[aria-pressed=true]{background:#a81e2d;border-color:#a81e2d;color:#fbf6ee}
+.hint{font-size:13px;opacity:.55;margin:0 0 4px}
+.stage{background:#fff;border:1px solid rgba(42,33,28,.1);border-radius:14px;
+  padding:36px;display:flex;justify-content:center;overflow-x:auto}
+.stage svg{width:min(100%,860px);height:auto;display:block}
+.stage.on-dark{background:#1b1512;border-color:#000}
+.grid{display:flex;flex-wrap:wrap;gap:14px}
+.cell{border:1px solid rgba(42,33,28,.1);border-radius:12px;background:#fff;
+  padding:18px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.cell.dark{background:#1b1512;border-color:#000}
+.cell .tag{font:11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;opacity:.55}
+.cell.dark .tag{color:#fbf6ee;opacity:.5}
+.cell .box{display:flex;align-items:center;justify-content:center;min-height:44px}
+.cell img,.cell svg{display:block}
+.w34{width:34px;height:auto}
+.w96{width:96px;height:auto}
+.w300{width:300px;height:auto}
+.compare{display:flex;flex-wrap:wrap;gap:14px}
+.compare .cell{flex:1 1 320px}
+.verdict{margin-top:18px;border-radius:12px;padding:14px 16px;
+  font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;
+  background:#fff;border:1px solid rgba(42,33,28,.12)}
+.verdict.pass{border-color:rgba(30,120,70,.45)}
+.verdict.fail{border-color:#a81e2d;color:#a81e2d}
+.notes{margin:0;padding-left:18px;font-size:14px;opacity:.75}
+.notes li{margin:5px 0}
+.is-slow .mtl-trail,.is-slow .mtl-plane{animation-duration:8s!important}
+</style>
+
+<template id="tpl-anim"><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="myTravel" viewBox="-4.2 -125.61 894.58 199.11" width="539.1" height="120">
+<title>myTravel</title>
+<desc>Логотип myTravel. Зацикленный индикатор ожидания: самолёт бесконечно идёт по взлётной полосе, за ним подтягивается гранатовая полоса. Слово статично.</desc>
+<style>
+  .mtl-runway path{fill:none;stroke:#a81e2d;stroke-width:23;stroke-linecap:round}
+  .mtl-track{opacity:.22}
+  .mtl-trail{animation-duration:2s;animation-timing-function:linear;animation-iteration-count:infinite}
+  .mtl-t1{stroke-dasharray:560 440;stroke-dashoffset:560;opacity:.28;animation-name:mtl-d1}
+  .mtl-t2{stroke-dasharray:300 700;stroke-dashoffset:300;opacity:.5;animation-name:mtl-d2}
+  .mtl-t3{stroke-dasharray:120 880;stroke-dashoffset:120;opacity:1;animation-name:mtl-d3}
+  .mtl-plane{fill:#a81e2d;opacity:0;transform-box:fill-box;transform-origin:50% 50%;
+    animation:mtl-fly 2s linear infinite,mtl-lift 2s linear infinite}
+  .mtl-word{fill:#2a211c}
+
+  @keyframes mtl-d1{from{stroke-dashoffset:560}to{stroke-dashoffset:-440}}
+  @keyframes mtl-d2{from{stroke-dashoffset:300}to{stroke-dashoffset:-700}}
+  @keyframes mtl-d3{from{stroke-dashoffset:120}to{stroke-dashoffset:-880}}
+  @keyframes mtl-lift{
+    0%{opacity:0} 3%{opacity:.4} 8%{opacity:1}
+    86%{opacity:1} 93%{opacity:.5} 100%{opacity:0}
+  }
+  @keyframes mtl-fly{
+0% { transform: translate(-776.39px,125.5px) rotate(39.52deg) scale(1) }
+  73.871% { transform: translate(-173.88px,125.5px) rotate(39.52deg) scale(1) }
+  75.059% { transform: translate(-164.17px,123.47px) rotate(36.9deg) scale(1) }
+  76.246% { transform: translate(-154.58px,120.7px) rotate(33.89deg) scale(1) }
+  77.434% { transform: translate(-145.19px,117.13px) rotate(30.49deg) scale(1) }
+  78.622% { transform: translate(-136.07px,112.77px) rotate(26.77deg) scale(1) }
+  79.809% { transform: translate(-127.29px,107.67px) rotate(22.85deg) scale(1) }
+  80.997% { transform: translate(-118.89px,101.96px) rotate(18.91deg) scale(1) }
+  82.185% { transform: translate(-110.85px,95.81px) rotate(15.14deg) scale(1) }
+  83.373% { transform: translate(-103.12px,89.39px) rotate(11.72deg) scale(1) }
+  84.56% { transform: translate(-95.61px,82.82px) rotate(8.76deg) scale(1) }
+  85.748% { transform: translate(-88.25px,76.21px) rotate(6.28deg) scale(1) }
+  86.936% { transform: translate(-80.98px,69.59px) rotate(4.3deg) scale(1) }
+  88% { transform: translate(-74.49px,63.68px) rotate(2.89deg) scale(1) }
+  88.123% { transform: translate(-73.74px,63px) rotate(2.75deg) scale(0.9985) }
+  89.311% { transform: translate(-66.51px,56.46px) rotate(1.58deg) scale(0.9836) }
+  90.499% { transform: translate(-59.26px,49.97px) rotate(0.73deg) scale(0.9688) }
+  91.686% { transform: translate(-51.99px,43.53px) rotate(0.14deg) scale(0.9539) }
+  92.874% { transform: translate(-44.69px,37.15px) rotate(-0.24deg) scale(0.9391) }
+  94.062% { transform: translate(-37.35px,30.82px) rotate(-0.46deg) scale(0.9242) }
+  95.249% { transform: translate(-29.96px,24.55px) rotate(-0.54deg) scale(0.9094) }
+  96.437% { transform: translate(-22.54px,18.33px) rotate(-0.51deg) scale(0.8945) }
+  97.625% { transform: translate(-15.07px,12.17px) rotate(-0.4deg) scale(0.8797) }
+  98.812% { transform: translate(-7.55px,6.06px) rotate(-0.22deg) scale(0.8648) }
+  100% { transform: translate(0px,0px) rotate(0deg) scale(0.85) }
+  }
+
+  /* Покой: полная полоса, самолёт дома — кадр в кадр исходный логотип. */
+  @media (prefers-reduced-motion:reduce){
+    .mtl-track{opacity:1}
+    .mtl-trail{display:none}
+    .mtl-plane{animation:none;opacity:1;transform:none}
+  }
+  .mtl-still .mtl-track{opacity:1}
+  .mtl-still .mtl-trail{display:none}
+  .mtl-still .mtl-plane{animation:none;opacity:1;transform:none}
+</style>
+<g class="mtl-runway">
+  <path class="mtl-track" d="M21.3,48 H623.81 C695.81,48 725.81,14 805.81,-52"/>
+  <path class="mtl-trail mtl-t1" pathLength="1000" d="M21.3,48 H623.81 C695.81,48 725.81,14 805.81,-52"/>
+  <path class="mtl-trail mtl-t2" pathLength="1000" d="M21.3,48 H623.81 C695.81,48 725.81,14 805.81,-52"/>
+  <path class="mtl-trail mtl-t3" pathLength="1000" d="M21.3,48 H623.81 C695.81,48 725.81,14 805.81,-52"/>
+</g>
+<path class="mtl-plane" d="M867.52,-102.91L861.68,-93.39L851.83,-83.55L858.69,-59.69L851.56,-53.81L837.58,-71.79L828.63,-65.01L831.36,-53.4L826.27,-49.2L820.74,-59.01L818.5,-58.62L815.53,-65.33L806.95,-72.62L812.04,-76.82L822.92,-71.93L831.28,-79.43L816.28,-96.57L823.4,-102.45L845.53,-91.19L857.06,-98.99L867.52,-102.91Z"/>
+<path class="mtl-word" d="M9.8 0V-75H29.8V-62.93Q33.1 -69.46 38.9 -73.14Q44.7 -76.82 52.48 -76.82Q60.3 -76.82 65.7 -72.95Q71.11 -69.09 73.74 -61.69Q77.94 -69.46 84.28 -73.14Q90.62 -76.82 97.88 -76.82Q109.23 -76.82 115.3 -68.8Q121.37 -60.77 121.37 -45.74V0H100.68V-45.97Q100.68 -50.22 99.83 -53.65Q98.98 -57.08 96.81 -59.14Q94.64 -61.19 90.6 -61.19Q85.84 -61.19 82.56 -58.08Q79.27 -54.96 77.6 -49.5Q75.93 -44.04 75.93 -36.94V0H55.24V-45.97Q55.24 -50.22 54.39 -53.67Q53.54 -57.12 51.37 -59.16Q49.2 -61.19 45.22 -61.19Q40.46 -61.19 37.16 -58.11Q33.86 -55.03 32.18 -49.55Q30.49 -44.07 30.49 -36.9V0ZM144.55 27.08V11.92H157.19Q158.67 11.92 159.4 11.29Q160.14 10.67 160.76 9.05L164.58 -1.46L163.4 6.07L130.74 -75H153.9L173.28 -14.42L171.22 -14.69L190.52 -75H213.63L178.76 14.71Q176.06 21.64 171.19 24.36Q166.31 27.08 159.8 27.08ZM252.71 0V-81.87H217.38V-100H309.63V-81.87H274.16V0ZM321.33 0V-75H341.32V-58.13L340.48 -60.32Q344.05 -68.68 350.5 -72.75Q356.94 -76.82 364.6 -76.82Q366.77 -76.82 368.99 -76.47Q371.21 -76.13 373.38 -75.29L371.81 -57.63Q367.29 -58.89 363.12 -58.89Q359.71 -58.89 356 -57.72Q352.3 -56.55 349.14 -53.58Q345.97 -50.61 344 -45.25Q342.02 -39.89 342.02 -31.55V0ZM406.76 1.78Q399.57 1.78 393.52 -0.73Q387.48 -3.24 383.83 -8.26Q380.18 -13.28 380.18 -20.77Q380.18 -28.82 384.86 -34.46Q389.54 -40.1 398.4 -43.05Q407.26 -46 419.86 -46H430.41L429.16 -44.09V-48.42Q429.16 -55.85 426.47 -59.47Q423.77 -63.09 417.51 -63.09Q411.51 -63.09 408.35 -59.93Q405.19 -56.78 404.49 -50.96L383.43 -54.61Q384.56 -60.84 388.77 -65.88Q392.98 -70.93 400.42 -73.91Q407.86 -76.9 418.7 -76.9Q428.61 -76.9 435.49 -73.73Q442.36 -70.57 445.95 -63.47Q449.53 -56.37 449.53 -44.51V-19.02Q449.53 -16.69 450.19 -15.93Q450.85 -15.17 453 -15.17H456.38V0H446.5Q438.44 0 434.21 -4.08Q429.99 -8.16 429.99 -15.74V-19.27L433.63 -17.91Q432.71 -14.92 430.96 -11.53Q429.21 -8.14 426.15 -5.1Q423.09 -2.07 418.35 -0.14Q413.61 1.78 406.76 1.78ZM412.7 -12.33Q417.57 -12.33 421.31 -14.58Q425.06 -16.82 427.2 -21.28Q429.35 -25.75 429.35 -32.4V-34.03H420.61Q413.2 -34.03 409.05 -32.09Q404.91 -30.14 403.25 -27.35Q401.59 -24.55 401.59 -21.86Q401.59 -19.76 402.59 -17.55Q403.58 -15.35 406 -13.84Q408.41 -12.33 412.7 -12.33ZM490.21 0 461.82 -75H484.92L503.49 -14.72H501.58L520.05 -75H543.16L514.83 0ZM588.47 1.82Q577.46 1.82 568.68 -2.99Q559.89 -7.8 554.76 -16.64Q549.63 -25.49 549.63 -37.59Q549.63 -49.6 554.66 -58.4Q559.7 -67.2 568.44 -72.01Q577.17 -76.82 588.33 -76.82Q594.54 -76.82 600.89 -74.93Q607.25 -73.04 612.58 -68.28Q617.92 -63.51 621.17 -55.02Q624.43 -46.53 624.43 -33.36H562.92V-45.14H606.01L603.8 -41.46Q603.26 -48.95 601.05 -53.54Q598.85 -58.14 595.43 -60.23Q592.01 -62.32 587.77 -62.32Q582.26 -62.32 578.6 -59.19Q574.94 -56.06 573.11 -50.48Q571.27 -44.89 571.27 -37.48Q571.27 -26.37 575.47 -19.91Q579.66 -13.46 588.31 -13.46Q593.97 -13.46 598.04 -16.37Q602.11 -19.27 604.26 -25.25L622.99 -20.47Q620.32 -12.73 614.99 -7.8Q609.66 -2.88 602.75 -0.53Q595.83 1.82 588.47 1.82ZM655.17 0Q646.79 0 642.33 -4.06Q637.87 -8.12 637.87 -15.74V-104.17H658.56V-19.02Q658.56 -16.71 659.22 -15.94Q659.88 -15.17 662.03 -15.17H667.81V0Z"/>
+</svg></template>
+<template id="tpl-orig"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="-4.2 -125.61 894.58 199.11" width="539.1" height="120"><title>myTravel</title><path d="M21.3,48 H623.81 C695.81,48 725.81,14 805.81,-52" fill="none" stroke="#a81e2d" stroke-width="23" stroke-linecap="round"/><path d="M867.52,-102.91L861.68,-93.39L851.83,-83.55L858.69,-59.69L851.56,-53.81L837.58,-71.79L828.63,-65.01L831.36,-53.4L826.27,-49.2L820.74,-59.01L818.5,-58.62L815.53,-65.33L806.95,-72.62L812.04,-76.82L822.92,-71.93L831.28,-79.43L816.28,-96.57L823.4,-102.45L845.53,-91.19L857.06,-98.99L867.52,-102.91Z" fill="#a81e2d"/><path d="M9.8 0V-75H29.8V-62.93Q33.1 -69.46 38.9 -73.14Q44.7 -76.82 52.48 -76.82Q60.3 -76.82 65.7 -72.95Q71.11 -69.09 73.74 -61.69Q77.94 -69.46 84.28 -73.14Q90.62 -76.82 97.88 -76.82Q109.23 -76.82 115.3 -68.8Q121.37 -60.77 121.37 -45.74V0H100.68V-45.97Q100.68 -50.22 99.83 -53.65Q98.98 -57.08 96.81 -59.14Q94.64 -61.19 90.6 -61.19Q85.84 -61.19 82.56 -58.08Q79.27 -54.96 77.6 -49.5Q75.93 -44.04 75.93 -36.94V0H55.24V-45.97Q55.24 -50.22 54.39 -53.67Q53.54 -57.12 51.37 -59.16Q49.2 -61.19 45.22 -61.19Q40.46 -61.19 37.16 -58.11Q33.86 -55.03 32.18 -49.55Q30.49 -44.07 30.49 -36.9V0ZM144.55 27.08V11.92H157.19Q158.67 11.92 159.4 11.29Q160.14 10.67 160.76 9.05L164.58 -1.46L163.4 6.07L130.74 -75H153.9L173.28 -14.42L171.22 -14.69L190.52 -75H213.63L178.76 14.71Q176.06 21.64 171.19 24.36Q166.31 27.08 159.8 27.08ZM252.71 0V-81.87H217.38V-100H309.63V-81.87H274.16V0ZM321.33 0V-75H341.32V-58.13L340.48 -60.32Q344.05 -68.68 350.5 -72.75Q356.94 -76.82 364.6 -76.82Q366.77 -76.82 368.99 -76.47Q371.21 -76.13 373.38 -75.29L371.81 -57.63Q367.29 -58.89 363.12 -58.89Q359.71 -58.89 356 -57.72Q352.3 -56.55 349.14 -53.58Q345.97 -50.61 344 -45.25Q342.02 -39.89 342.02 -31.55V0ZM406.76 1.78Q399.57 1.78 393.52 -0.73Q387.48 -3.24 383.83 -8.26Q380.18 -13.28 380.18 -20.77Q380.18 -28.82 384.86 -34.46Q389.54 -40.1 398.4 -43.05Q407.26 -46 419.86 -46H430.41L429.16 -44.09V-48.42Q429.16 -55.85 426.47 -59.47Q423.77 -63.09 417.51 -63.09Q411.51 -63.09 408.35 -59.93Q405.19 -56.78 404.49 -50.96L383.43 -54.61Q384.56 -60.84 388.77 -65.88Q392.98 -70.93 400.42 -73.91Q407.86 -76.9 418.7 -76.9Q428.61 -76.9 435.49 -73.73Q442.36 -70.57 445.95 -63.47Q449.53 -56.37 449.53 -44.51V-19.02Q449.53 -16.69 450.19 -15.93Q450.85 -15.17 453 -15.17H456.38V0H446.5Q438.44 0 434.21 -4.08Q429.99 -8.16 429.99 -15.74V-19.27L433.63 -17.91Q432.71 -14.92 430.96 -11.53Q429.21 -8.14 426.15 -5.1Q423.09 -2.07 418.35 -0.14Q413.61 1.78 406.76 1.78ZM412.7 -12.33Q417.57 -12.33 421.31 -14.58Q425.06 -16.82 427.2 -21.28Q429.35 -25.75 429.35 -32.4V-34.03H420.61Q413.2 -34.03 409.05 -32.09Q404.91 -30.14 403.25 -27.35Q401.59 -24.55 401.59 -21.86Q401.59 -19.76 402.59 -17.55Q403.58 -15.35 406 -13.84Q408.41 -12.33 412.7 -12.33ZM490.21 0 461.82 -75H484.92L503.49 -14.72H501.58L520.05 -75H543.16L514.83 0ZM588.47 1.82Q577.46 1.82 568.68 -2.99Q559.89 -7.8 554.76 -16.64Q549.63 -25.49 549.63 -37.59Q549.63 -49.6 554.66 -58.4Q559.7 -67.2 568.44 -72.01Q577.17 -76.82 588.33 -76.82Q594.54 -76.82 600.89 -74.93Q607.25 -73.04 612.58 -68.28Q617.92 -63.51 621.17 -55.02Q624.43 -46.53 624.43 -33.36H562.92V-45.14H606.01L603.8 -41.46Q603.26 -48.95 601.05 -53.54Q598.85 -58.14 595.43 -60.23Q592.01 -62.32 587.77 -62.32Q582.26 -62.32 578.6 -59.19Q574.94 -56.06 573.11 -50.48Q571.27 -44.89 571.27 -37.48Q571.27 -26.37 575.47 -19.91Q579.66 -13.46 588.31 -13.46Q593.97 -13.46 598.04 -16.37Q602.11 -19.27 604.26 -25.25L622.99 -20.47Q620.32 -12.73 614.99 -7.8Q609.66 -2.88 602.75 -0.53Q595.83 1.82 588.47 1.82ZM655.17 0Q646.79 0 642.33 -4.06Q637.87 -8.12 637.87 -15.74V-104.17H658.56V-19.02Q658.56 -16.71 659.22 -15.94Q659.88 -15.17 662.03 -15.17H667.81V0Z" fill="#2a211c"/></svg></template>
+
+<div class="wrap">
+
+  <h1>anim-loader — <b>myTravel</b></h1>
+  <p class="lede">Зацикленный индикатор ожидания: «держим место, ждём подтверждение».
+    Слово не двигается — по полосе бесконечно идёт самолёт, за ним подтягивается
+    гранатовый след, остальная часть полосы стоит бледной подложкой.</p>
+
+  <ul class="meta">
+    <li>цикл 2.0 s</li>
+    <li>linear</li>
+    <li>бесшовно (период = длине пути)</li>
+    <li>transform · opacity · stroke-dashoffset</li>
+    <li>без внешних ссылок</li>
+    <li>prefers-reduced-motion: reduce</li>
+  </ul>
+
+  <h2>Крупно</h2>
+  <div class="bar">
+    <button id="btn-restart" type="button">Проиграть заново</button>
+    <button id="btn-slow" type="button" aria-pressed="false">Медленно ×4</button>
+    <button id="btn-seam" type="button" aria-pressed="false">Встать на стык</button>
+  </div>
+  <p class="hint">«Встать на стык» запускает цикл за 6% до конца — видно место склейки.
+    Вместе с «Медленно ×4» рывок, если бы он был, стал бы очевиден.</p>
+  <div class="stage" data-stage></div>
+
+  <h2>На тёмном #1b1512</h2>
+  <p class="hint">Слово набрано цветом «тут» #2a211c — на тёмном оно почти не читается,
+    это свойство исходного логотипа, а не анимации. Тут проверяем гранатовую часть.</p>
+  <div class="stage on-dark" data-stage></div>
+
+  <h2>Мелко — тот же файл через &lt;img&gt;</h2>
+  <div class="grid">
+    <div class="cell">
+      <span class="tag">34 px · каймак</span>
+      <div class="box"><img class="w34" data-file="./anim-loader.svg" alt="myTravel, загрузка"></div>
+    </div>
+    <div class="cell dark">
+      <span class="tag">34 px · тёмный</span>
+      <div class="box"><img class="w34" data-file="./anim-loader.svg" alt="myTravel, загрузка"></div>
+    </div>
+    <div class="cell">
+      <span class="tag">96 px</span>
+      <div class="box"><img class="w96" data-file="./anim-loader.svg" alt="myTravel, загрузка"></div>
+    </div>
+    <div class="cell dark">
+      <span class="tag">96 px · тёмный</span>
+      <div class="box"><img class="w96" data-file="./anim-loader.svg" alt="myTravel, загрузка"></div>
+    </div>
+  </div>
+
+  <h2>Сверка кадра покоя</h2>
+  <div class="compare">
+    <div class="cell">
+      <span class="tag">исходный логотип wordmark-flight-01.svg</span>
+      <div class="box"><img class="w300" src="../wordmark-flight/wordmark-flight-01.svg" alt="myTravel"></div>
+    </div>
+    <div class="cell">
+      <span class="tag">анимация в покое (.mtl-still / reduced-motion)</span>
+      <div class="box"><span class="w300" id="still-host"></span></div>
+    </div>
+  </div>
+  <div class="verdict" id="verdict">Сверяю…</div>
+
+  <h2>Что стоит знать</h2>
+  <ul class="notes">
+    <li>Период анимации штриха равен длине пути (<code>pathLength="1000"</code>),
+      поэтому кадр при t=0 и при t=2s совпадает — стык математически бесшовный.</li>
+    <li>Самолёт на стыке прозрачен: он гаснет на наборе высоты и проявляется в начале
+      полосы, поэтому возврата назад не видно.</li>
+    <li>Класс <code>mtl-still</code> на корневом <code>&lt;svg&gt;</code> замораживает
+      анимацию вручную — для печати, PDF и снимков.</li>
+    <li>Проверить <code>reduce</code> вживую: macOS → Универсальный доступ → Дисплей →
+      «Уменьшение движения»; после этого перезагрузить страницу.</li>
+  </ul>
+
+</div>
+<script>
+var tpl = document.getElementById('tpl-anim');
+var stages = [].slice.call(document.querySelectorAll('[data-stage]'));
+var imgs = [].slice.call(document.querySelectorAll('[data-file]'));
+var slow = false, seam = false, bust = 0;
+
+function mount(host){
+  host.textContent = '';
+  var svg = tpl.content.firstElementChild.cloneNode(true);
+  if (seam){
+    var d = slow ? 8 : 2;
+    [].forEach.call(svg.querySelectorAll('.mtl-trail,.mtl-plane'), function(el){
+      el.style.animationDelay = (-0.94 * d) + 's';
+    });
+  }
+  host.appendChild(svg);
+}
+function restart(){
+  bust++;
+  stages.forEach(mount);
+  imgs.forEach(function(im){
+    im.src = im.getAttribute('data-file') + '?r=' + bust;
+  });
+}
+document.getElementById('btn-restart').onclick = restart;
+
+var bs = document.getElementById('btn-slow');
+bs.onclick = function(){
+  slow = !slow;
+  bs.setAttribute('aria-pressed', slow);
+  document.body.classList.toggle('is-slow', slow);
+  restart();
+};
+var bj = document.getElementById('btn-seam');
+bj.onclick = function(){
+  seam = !seam;
+  bj.setAttribute('aria-pressed', seam);
+  restart();
+};
+restart();
+
+/* ---- pixel gate: still state vs original ---- */
+var W = 1078, H = 240;
+
+function toImg(markup){
+  return new Promise(function(res, rej){
+    var i = new Image();
+    i.onload = function(){ res(i); };
+    i.onerror = rej;
+    i.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markup);
+  });
+}
+function paint(img){
+  var c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  var x = c.getContext('2d', {willReadFrequently:true});
+  x.fillStyle = '#ffffff'; x.fillRect(0,0,W,H);
+  x.drawImage(img, 0, 0, W, H);
+  return x.getImageData(0,0,W,H).data;
+}
+function diff(a, b){
+  var max = 0, n = 0;
+  for (var i = 0; i < a.length; i += 4){
+    var d = Math.max(Math.abs(a[i]-b[i]), Math.abs(a[i+1]-b[i+1]), Math.abs(a[i+2]-b[i+2]));
+    if (d > max) max = d;
+    if (d > 2) n++;
+  }
+  return {max:max, n:n, total:a.length/4};
+}
+function serialize(mod){
+  var svg = tpl.content.firstElementChild.cloneNode(true);
+  if (mod) mod(svg);
+  return new XMLSerializer().serializeToString(svg);
+}
+
+var out = document.getElementById('verdict');
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+Promise.all([
+  toImg(document.getElementById('tpl-orig').innerHTML.trim()),
+  toImg(serialize(function(s){ s.setAttribute('class','mtl-still'); })),
+  toImg(serialize(null))
+]).then(function(r){
+  var orig = paint(r[0]), still = paint(r[1]), live = paint(r[2]);
+  var a = diff(orig, still);
+  var b = diff(orig, live);
+  var okA = a.max === 0;
+  var okB = reduced ? (b.max === 0) : (b.n > 0);
+  var lines = [
+    'prefers-reduced-motion: ' + (reduced ? 'reduce' : 'no-preference'),
+    '',
+    'A. состояние покоя (.mtl-still) против исходного логотипа',
+    '   макс. расхождение канала: ' + a.max + '   пикселей мимо: ' + a.n + ' / ' + a.total,
+    '   ' + (okA ? 'СОВПАДАЕТ ПИКСЕЛЬ В ПИКСЕЛЬ' : 'РАСХОЖДЕНИЕ'),
+    '',
+    'B. живой файл при текущей настройке движения против исходного',
+    '   макс. расхождение канала: ' + b.max + '   пикселей мимо: ' + b.n + ' / ' + b.total,
+    '   ' + (reduced
+        ? (okB ? 'при reduce анимация выключена, кадр исходный' : 'при reduce кадр НЕ исходный')
+        : (okB ? 'анимация идёт (кадр ожидаемо отличается)' : 'кадр не отличается — анимация не запустилась'))
+  ];
+  out.textContent = lines.join('\n');
+  out.className = 'verdict ' + (okA && okB ? 'pass' : 'fail');
+  out.setAttribute('data-result', (okA && okB) ? 'PASS' : 'FAIL');
+  out.setAttribute('data-a-max', a.max);
+  out.setAttribute('data-b-n', b.n);
+}).catch(function(e){
+  out.textContent = 'Сверка не выполнена: ' + e;
+  out.className = 'verdict fail';
+  out.setAttribute('data-result', 'ERROR');
+});
+</script>
+<script>
+(function(){
+  var t = document.getElementById('tpl-anim');
+  var s = t.content.firstElementChild.cloneNode(true);
+  s.setAttribute('class','mtl-still');
+  s.removeAttribute('width'); s.removeAttribute('height');
+  s.style.width = '300px'; s.style.height = 'auto'; s.style.display = 'block';
+  document.getElementById('still-host').appendChild(s);
+})();
+</script>
+</html>

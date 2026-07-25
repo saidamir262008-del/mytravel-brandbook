@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" class="mti" viewBox="0 0 32 32" width="32" height="32"><title>myTravel</title><style>
+/* myTravel · micro — иконка/фавикон 32 px.
+   Один въезд по вектору набора высоты при появлении и короткий рывок на hover.
+   Обе анимации заканчиваются в transform:none / opacity:1 — то есть в статичной иконке. */
+
+.mti .mti-enter {
+  animation: mti-enter 520ms cubic-bezier(.2,.72,.28,1) both;
+}
+@keyframes mti-enter {
+  0%   { transform: translate(-2.468px, 2.036px); opacity: 0; }
+  60%  { opacity: 1; }
+  100% { transform: translate(0,0); opacity: 1; }
+}
+
+.mti:hover .mti-dart,
+.mti.is-hover .mti-dart,
+.mti-host:hover .mti .mti-dart,
+.mti-host:focus-visible .mti .mti-dart {
+  animation: mti-dart 260ms both;
+}
+@keyframes mti-dart {
+  0%   { transform: translate(0,0);
+         animation-timing-function: cubic-bezier(.34,.6,.45,1); }
+  46%  { transform: translate(1.234px, -1.018px);
+         animation-timing-function: cubic-bezier(.45,0,.2,1); }
+  100% { transform: translate(0,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mti .mti-enter,
+  .mti .mti-dart {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+</style><rect class="mti-bg" x="0" y="0" width="32" height="32" rx="7.2" fill="#a81e2d"/><g class="mti-enter"><g class="mti-dart"><path class="mti-plane" transform="translate(-260.452,41.113) scale(0.3302)" d="M867.52,-102.91L861.68,-93.39L851.83,-83.55L858.69,-59.69L851.56,-53.81L837.58,-71.79L828.63,-65.01L831.36,-53.4L826.27,-49.2L820.74,-59.01L818.5,-58.62L815.53,-65.33L806.95,-72.62L812.04,-76.82L822.92,-71.93L831.28,-79.43L816.28,-96.57L823.4,-102.45L845.53,-91.19L857.06,-98.99L867.52,-102.91Z" fill="#fbf6ee"/></g></g></svg>

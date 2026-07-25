@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myTravel · micro — проверка</title>
+<style>
+  :root{
+    --granat:#a81e2d;
+    --tut:#2a211c;
+    --kaymak:#fbf6ee;
+    --dark:#1b1512;
+    --line:rgba(42,33,28,.14);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--kaymak);
+    color:var(--tut);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    padding:40px 32px 96px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+
+  h1{font-size:22px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{margin:0 0 36px;max-width:62ch;color:rgba(42,33,28,.66)}
+  h2{
+    font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    margin:0 0 14px;color:rgba(42,33,28,.5);
+  }
+  section{
+    border-top:1px solid var(--line);
+    padding:26px 0 34px;
+  }
+  p.note{margin:12px 0 0;color:rgba(42,33,28,.6);max-width:70ch;font-size:13.5px}
+  code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(42,33,28,.07);padding:1px 5px;border-radius:4px}
+
+  /* ── кнопки ───────────────────────────────────────────── */
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 20px}
+  button{
+    font:600 13px/1 inherit;font-family:inherit;
+    background:var(--granat);color:var(--kaymak);
+    border:0;border-radius:999px;padding:10px 18px;cursor:pointer;
+    transition:opacity .15s;
+  }
+  button:hover{opacity:.86}
+  button.ghost{background:transparent;color:var(--tut);box-shadow:inset 0 0 0 1.5px rgba(42,33,28,.22)}
+  button.ghost[aria-pressed="true"]{background:var(--tut);color:var(--kaymak);box-shadow:none}
+
+  /* ── сцены ────────────────────────────────────────────── */
+  .stage{
+    background:#fff;border-radius:14px;padding:34px 30px;
+    box-shadow:0 1px 0 rgba(42,33,28,.08), 0 0 0 1px rgba(42,33,28,.06);
+  }
+  .stage svg{display:block;width:100%;height:auto;max-width:860px;margin:0 auto}
+
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:stretch}
+  .cell{
+    flex:0 0 auto;border-radius:12px;padding:20px 22px;
+    display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;
+    min-width:190px;
+    box-shadow:inset 0 0 0 1px rgba(42,33,28,.08);
+    background:#fff;
+  }
+  .cell.dark{background:var(--dark);box-shadow:none}
+  .cell .cap{font:600 11px/1 inherit;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,33,28,.42)}
+  .cell.dark .cap{color:rgba(251,246,238,.42)}
+
+  .h34 svg{height:34px;width:auto;display:block}
+  .h24 svg{height:24px;width:auto;display:block}
+  .h20 svg{height:20px;width:auto;display:block}
+  .h120 svg{height:120px;width:auto;display:block}
+
+  /* ── шапка-макет ──────────────────────────────────────── */
+  .mock{
+    border-radius:12px;padding:0 20px;height:64px;
+    display:flex;align-items:center;gap:26px;
+    background:#fff;box-shadow:inset 0 0 0 1px rgba(42,33,28,.08);
+  }
+  .mock.dark{background:var(--dark);box-shadow:none}
+  .mock a.mtl-host{
+    display:inline-flex;align-items:center;text-decoration:none;
+    padding:8px 10px;margin-left:-10px;border-radius:8px;outline:0;
+  }
+  .mock a.mtl-host:focus-visible{box-shadow:0 0 0 2.5px rgba(168,30,45,.55)}
+  .mock a.mtl-host svg{height:30px;width:auto;display:block}
+  .mock nav{margin-left:auto;display:flex;gap:22px;font-size:13.5px}
+  .mock nav a{color:rgba(42,33,28,.62);text-decoration:none}
+  .mock.dark nav a{color:rgba(251,246,238,.55)}
+
+  /* ── сверка финального кадра ──────────────────────────── */
+  .compare{display:flex;gap:14px;flex-wrap:wrap}
+  .compare .cell{align-items:flex-start;min-width:0;flex:1 1 380px}
+  .compare .cell > *{width:100%}
+  .compare img,.compare svg{display:block;width:100%;height:auto}
+
+  .diff{
+    background:#000;border-radius:12px;overflow:hidden;
+    width:100%;max-width:620px;line-height:0;
+  }
+  .diff canvas{width:100%;height:auto;display:block}
+  .diff.boost{filter:brightness(9)}
+
+  /* ── иконка ───────────────────────────────────────────── */
+  .icons{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .icons .cell{min-width:112px;gap:12px}
+  .i128 svg{width:128px;height:128px;display:block}
+  .i32 svg{width:32px;height:32px;display:block}
+  .i24 svg{width:24px;height:24px;display:block}
+  .i20 svg{width:20px;height:20px;display:block}
+  .i16 svg{width:16px;height:16px;display:block}
+
+  .tabstrip{
+    display:flex;align-items:center;gap:9px;background:var(--dark);
+    border-radius:10px 10px 0 0;padding:9px 12px;color:rgba(251,246,238,.72);font-size:12.5px;
+  }
+  .tabstrip .i16 svg{flex:0 0 auto}
+
+  .warn{
+    background:#a81e2d;color:#fbf6ee;border-radius:10px;padding:12px 16px;margin:0 0 24px;
+    font-size:13.5px;display:none;
+  }
+  .warn.on{display:block}
+  .flag{
+    display:inline-block;font:600 11px/1 inherit;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--granat);background:rgba(168,30,45,.1);padding:5px 9px;border-radius:6px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>myTravel · концепция «микро»</h1>
+  <p class="sub">
+    Два интерфейсных состояния. <b>Раз:</b> логотип в шапке — при наведении самолёт делает
+    короткий рывок вперёд по вектору набора высоты (280 мс) и возвращается точно на место;
+    при нажатии слегка отъезжает назад. <b>Два:</b> иконка 32 px — самолёт въезжает по тому же
+    вектору при появлении (520 мс) и делает микрорывок на наведении (260 мс).
+    Покой всегда равен исходному логотипу.
+  </p>
+
+  <div class="warn" id="warn">
+    Файлы не удалось загрузить через <code>fetch</code> (страница открыта с <code>file://</code>).
+    Показаны запасные <code>&lt;object&gt;</code>-врезки: наведение внутри них работает,
+    но кнопки проигрывания — нет. Открой страницу через локальный сервер.
+  </div>
+
+  <div class="bar">
+    <button id="replay">Проиграть заново</button>
+    <button class="ghost" id="reduce" aria-pressed="false">Симулировать prefers-reduced-motion</button>
+    <button class="ghost" id="boost" aria-pressed="false">Усилить разницу ×9</button>
+  </div>
+
+  <!-- 1 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Крупно · наведи на логотип</h2>
+    <div class="stage" data-svg="anim-micro.svg"></div>
+    <p class="note">
+      Рывок — 20 юнитов по касательной к концу кривой (−39,5°): 129 мс вперёд,
+      151 мс обратно, всего 280 мс. На этой сцене — ≈ 19 px, в шапке ниже — ≈ 3 px.
+      Разгон нарочно не «щелчком»: за первую четверть фазы проходится 46 % пути,
+      за половину — 81 %, поэтому на мелких размерах это ход, а не скачок в один кадр.
+      Зажми кнопку мыши — самолёт отъедет назад на 8 юнитов (состояние <code>:active</code>).
+    </p>
+  </section>
+
+  <!-- 2 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Боевая врезка · шапка</h2>
+    <div class="mock">
+      <a class="mtl-host" href="#" aria-label="myTravel — на главную" data-svg="anim-micro.svg"></a>
+      <nav><a href="#">Рейсы</a><a href="#">Отели</a><a href="#">Помощь</a></nav>
+    </div>
+    <div style="height:14px"></div>
+    <div class="mock dark">
+      <a class="mtl-host" href="#" aria-label="myTravel — на главную" data-svg="anim-micro.svg"></a>
+      <nav><a href="#">Рейсы</a><a href="#">Отели</a><a href="#">Помощь</a></nav>
+    </div>
+    <p class="note">
+      Ссылка помечена классом <code>mtl-host</code> — тогда рывок ловит всю область ссылки,
+      а не только пиксели логотипа, и срабатывает на <code>:focus-visible</code> с клавиатуры
+      (нажми Tab). На тёмном фоне слово остаётся цвета тут <code>#2a211c</code> — это исходный
+      файл без правок, инверсия для тёмной темы делается отдельным ассетом, не анимацией.
+    </p>
+  </section>
+
+  <!-- 3 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Мелкие размеры · проверка на дрожание</h2>
+    <div class="row">
+      <div class="cell h34"><span class="cap">34 px · светлый</span><span data-svg="anim-micro.svg"></span></div>
+      <div class="cell dark h34"><span class="cap">34 px · #1b1512</span><span data-svg="anim-micro.svg"></span></div>
+      <div class="cell h24"><span class="cap">24 px</span><span data-svg="anim-micro.svg"></span></div>
+      <div class="cell h20"><span class="cap">20 px</span><span data-svg="anim-micro.svg"></span></div>
+    </div>
+    <p class="note">
+      Высота здесь — высота файла; сам знак занимает 76 % от неё (34 px файла = 26 px знака).
+      Рывок: 3,4 px на 34 px, 2,4 px на 24 px, 2,0 px на 20 px. Ход один, туда-обратно,
+      без перелёта и без второго колебания — поэтому это кивок, а не дрожь.
+      Отъезд на нажатии на этих размерах меньше пикселя и практически не виден: он рассчитан
+      на крупные врезки, а не на шапку. Ниже 20 px самолёт вырождается в точку —
+      известное ограничение вордмарка, там ставится иконка из блока ниже.
+    </p>
+  </section>
+
+  <!-- 4 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Сверка финального кадра</h2>
+    <div class="compare">
+      <div class="cell">
+        <span class="cap">исходник · wordmark-flight-01.svg</span>
+        <img src="../wordmark-flight/wordmark-flight-01.svg" alt="исходный логотип myTravel">
+      </div>
+      <div class="cell">
+        <span class="cap">анимация в покое · anim-micro.svg</span>
+        <span data-svg="anim-micro.svg"></span>
+      </div>
+    </div>
+    <div style="height:14px"></div>
+    <div class="diff" id="diff">
+      <canvas id="diffcanvas" width="1240" height="276"></canvas>
+    </div>
+    <div class="bar" style="margin:16px 0 0">
+      <button id="raster">Сверить растр 1200×267</button>
+      <span class="flag" id="diffflag">панель выше должна быть сплошной чёрной</span>
+    </div>
+    <p class="note">
+      Панель — <code>difference</code> исходника и анимации в покое: совпадение пиксель в пиксель
+      = сплошной чёрный. Кнопка «усилить разницу» поднимает яркость в 9 раз, чтобы вылезли
+      расхождения в один уровень сглаживания.
+      Разница считается в <code>canvas</code>, а не через CSS <code>mix-blend-mode</code>, и оба
+      файла кладутся на непрозрачную белую подложку — это важно: у двух прозрачных слоёв
+      <code>difference</code> не гасит полупрозрачные края сглаживания, а композитор браузера
+      вдобавок растрирует <code>&lt;img&gt;</code> и инлайн-DOM чуть по-разному. И то, и другое
+      рисует ложный призрак на совершенно одинаковых файлах.
+      Кнопка «сверить растр» — строгая проверка помимо глаз: оба файла растрируются
+      в canvas 1200×267 и сравниваются побайтово, включая альфу.
+    </p>
+  </section>
+
+  <!-- 5 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Иконка 32 px</h2>
+    <div class="bar">
+      <button id="replay-icon">Проиграть появление</button>
+      <button class="ghost" id="hover-icon">Проиграть наведение</button>
+    </div>
+    <div class="icons">
+      <div class="cell i128"><span class="cap">128</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell i32"><span class="cap">32</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell i24"><span class="cap">24</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell i20"><span class="cap">20</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell i16"><span class="cap">16</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell dark i32"><span class="cap">32 · #1b1512</span><span data-svg="anim-micro-icon.svg"></span></div>
+      <div class="cell dark i16"><span class="cap">16 · #1b1512</span><span data-svg="anim-micro-icon.svg"></span></div>
+    </div>
+    <div style="height:16px"></div>
+    <div class="tabstrip">
+      <span class="i16" data-svg="anim-micro-icon.svg"></span>
+      <span>myTravel — поиск рейсов</span>
+    </div>
+    <p class="note">
+      Иконка — тот же путь самолёта из исходника, без перерисовки: вписан в квадрат 32×32
+      (ширина 20, поля 6). Каймак <code>#fbf6ee</code> на гранате <code>#a81e2d</code> — на 16 px
+      плашка держит контраст и в светлой, и в тёмной вкладке. Рывок на наведении — 1,6 юнита
+      (5 % плашки): 1,6 px на 32 px, 1,2 px на 24 px, 1,0 px на 20 px — один заметный ход,
+      а не вибрация. На 16 px рывок падает до 0,8 px и перестаёт читаться как движение;
+      это нижняя граница приёма, наведения на 16 px в интерфейсе и не бывает.
+      Въезд крупнее (3,2 юнита) и держится до 16 px включительно.
+      Как настоящий фавикон Chrome покажет статичный финальный кадр (он не анимирует SVG-фавиконы),
+      Firefox проиграет въезд один раз — обе развязки корректны.
+    </p>
+  </section>
+
+  <!-- 6 ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Что внутри файлов</h2>
+    <p class="note">
+      Анимация целиком в <code>&lt;style&gt;</code> внутри SVG, только CSS-кейфреймы — SMIL нет.
+      Двигаются исключительно <code>transform</code> и <code>opacity</code>. Ни одного
+      <code>id</code>, <code>defs</code>, фильтра или внешней ссылки, поэтому файл можно вставить
+      инлайном хоть десять раз на страницу. Все селекторы и имена кейфреймов заскоплены на
+      <code>.mtl</code> / <code>.mti</code>, чтобы стиль не протёк в чужой каскад при инлайне.
+      Блок <code>@media (prefers-reduced-motion: reduce)</code> гасит анимации и переходы
+      и возвращает <code>transform:none</code> — кнопка выше переключает медиа-условие этого
+      самого блока в реальных стилях файла, так что проверяется он, а не его копия.
+    </p>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  var WARN = document.getElementById('warn');
+  var cache = {};
+  var slots = [].slice.call(document.querySelectorAll('[data-svg]'));
+
+  function load(name) {
+    if (cache[name]) return cache[name];
+    cache[name] = fetch(name, { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    });
+    return cache[name];
+  }
+
+  function fill(slot) {
+    var name = slot.getAttribute('data-svg');
+    return load(name).then(function (text) {
+      slot.innerHTML = text;
+    })['catch'](function () {
+      WARN.classList.add('on');
+      slot.innerHTML = '<object type="image/svg+xml" data="' + name + '"></object>';
+    });
+  }
+
+  function fillAll() { return Promise.all(slots.map(fill)); }
+
+  // ── проигрывание: класс снимаем, форсируем reflow, ставим обратно ──
+  function play(sel, cls, ms) {
+    var nodes = document.querySelectorAll(sel);
+    [].forEach.call(nodes, function (n) { n.classList.remove(cls); });
+    void document.body.offsetWidth;
+    [].forEach.call(nodes, function (n) { n.classList.add(cls); });
+    setTimeout(function () {
+      [].forEach.call(nodes, function (n) { n.classList.remove(cls); });
+    }, ms);
+  }
+
+  document.getElementById('replay').addEventListener('click', function () {
+    play('svg.mtl', 'is-hover', 320);
+  });
+  document.getElementById('hover-icon').addEventListener('click', function () {
+    play('svg.mti', 'is-hover', 300);
+  });
+  // появление иконки перезапускаем пересозданием узла
+  document.getElementById('replay-icon').addEventListener('click', function () {
+    slots.filter(function (s) { return s.getAttribute('data-svg').indexOf('icon') > -1; })
+         .forEach(function (s) { s.innerHTML = ''; fill(s); });
+  });
+
+  // ── растрирование файла в canvas ──
+  // opaque=true кладёт белую подложку: только так difference гасит
+  // полупрозрачные края сглаживания, иначе панель рисует ложный призрак
+  function rasterize(url, w, h, opaque) {
+    return load(url).then(function (txt) {
+      return new Promise(function (res, rej) {
+        var u = URL.createObjectURL(new Blob([txt], { type: 'image/svg+xml' }));
+        var img = new Image();
+        img.onload = function () {
+          var c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          var g = c.getContext('2d', { willReadFrequently: true });
+          if (opaque) { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); }
+          else { g.clearRect(0, 0, w, h); }
+          g.drawImage(img, 0, 0, w, h);
+          URL.revokeObjectURL(u);
+          res(c);
+        };
+        img.onerror = rej;
+        img.src = u;
+      });
+    });
+  }
+
+  // ── визуальный difference, посчитанный в canvas, а не композитором ──
+  function drawDiff() {
+    var cv = document.getElementById('diffcanvas');
+    var W = cv.width, H = cv.height;
+    return Promise.all([
+      rasterize('../wordmark-flight/wordmark-flight-01.svg', W, H, true),
+      rasterize('anim-micro.svg', W, H, true)
+    ]).then(function (r) {
+      var g = cv.getContext('2d');
+      g.globalCompositeOperation = 'source-over';
+      g.drawImage(r[0], 0, 0);
+      g.globalCompositeOperation = 'difference';
+      g.drawImage(r[1], 0, 0);
+      g.globalCompositeOperation = 'source-over';
+    })['catch'](function () {});
+  }
+
+  document.getElementById('raster').addEventListener('click', function () {
+    var flag = document.getElementById('diffflag');
+    var btn = this;
+    btn.disabled = true;
+    flag.textContent = 'считаю…';
+    var W = 1200, H = 267;
+    Promise.all([
+      rasterize('../wordmark-flight/wordmark-flight-01.svg', W, H, false),
+      rasterize('anim-micro.svg', W, H, false)
+    ]).then(function (cs) {
+      var a = cs[0].getContext('2d', { willReadFrequently: true }).getImageData(0, 0, W, H).data;
+      var b = cs[1].getContext('2d', { willReadFrequently: true }).getImageData(0, 0, W, H).data;
+      var max = 0, bad = 0;
+      for (var i = 0; i < a.length; i++) {
+        var d = a[i] > b[i] ? a[i] - b[i] : b[i] - a[i];
+        if (d) { bad++; if (d > max) max = d; }
+      }
+      flag.textContent = max === 0
+        ? 'совпадение пиксель в пиксель: 0 из ' + a.length + ' субпикселей отличается'
+        : 'расхождение: ' + bad + ' субпикселей, максимум ' + max + '/255';
+      flag.style.color = max === 0 ? '#a81e2d' : '#fff';
+      flag.style.background = max === 0 ? 'rgba(168,30,45,.1)' : '#a81e2d';
+      btn.disabled = false;
+    })['catch'](function (e) {
+      flag.textContent = 'не удалось растрировать: ' + e;
+      btn.disabled = false;
+    });
+  });
+
+  // ── усиление diff ──
+  var diff = document.getElementById('diff');
+  document.getElementById('boost').addEventListener('click', function () {
+    var on = diff.classList.toggle('boost');
+    this.setAttribute('aria-pressed', String(on));
+  });
+
+  // ── симуляция prefers-reduced-motion: переключаем медиа-условие
+  //    настоящего блока внутри загруженных SVG ──
+  var flipped = [];
+  document.getElementById('reduce').addEventListener('click', function () {
+    var on = this.getAttribute('aria-pressed') !== 'true';
+    if (on) {
+      flipped = [];
+      [].forEach.call(document.styleSheets, function (sheet) {
+        var rules;
+        try { rules = sheet.cssRules; } catch (e) { return; }
+        [].forEach.call(rules || [], function (rule) {
+          if (rule.type === 4 && /prefers-reduced-motion/.test(rule.conditionText || rule.media.mediaText)) {
+            flipped.push([rule, rule.media.mediaText]);
+            rule.media.mediaText = 'all';
+          }
+        });
+      });
+      this.textContent = 'Вернуть анимацию (' + flipped.length + ' блока)';
+    } else {
+      flipped.forEach(function (p) { p[0].media.mediaText = p[1]; });
+      this.textContent = 'Симулировать prefers-reduced-motion';
+    }
+    this.setAttribute('aria-pressed', String(on));
+  });
+
+  fillAll().then(drawDiff).then(function () {
+    document.body.setAttribute('data-ready', '1');
+  });
+})();
+</script>
+</body>
+</html>

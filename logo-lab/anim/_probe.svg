@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+<style>
+  /* Ожидаемо к 3-й секунде: обе плашки гранатовые и на месте. */
+  .bw{ animation: go 700ms linear backwards; }   /* fill-mode: backwards */
+  .nn{ animation: go 700ms linear none; }        /* fill-mode: none      */
+  @keyframes go{ from{ fill:#0000ff; transform: translateY(-60px);} }
+</style>
+<rect class="bw" x="10" y="30" width="80" height="60" fill="#a81e2d"/>
+<rect class="nn" x="110" y="30" width="80" height="60" fill="#a81e2d"/>
+<text x="10" y="20" font-family="monospace" font-size="13" fill="#333">backwards | none</text>
+</svg>
