@@ -1,0 +1,311 @@
+/* ==========================================================================
+   myTravel — дизайн-токены. Направление «ABR».
+   Единственный источник правды по цвету, типографике, отступам и тени.
+   Тёмная тема — через [data-theme="dark"] или prefers-color-scheme.
+
+   Правило про красный: гранатовый — цвет БРЕНДА и главного действия.
+   Поэтому ошибка никогда не обозначается одним красным: всегда красный +
+   иконка + текст. Статус «отменено» — нейтральный, а не красный,
+   иначе он спорит с кнопкой «Оплатить». См. docs/usage-rules.md.
+   ========================================================================== */
+
+:root {
+  /* --- Базовая палитра --------------------------------------------------- */
+
+  /* Анор — гранат. Бренд, главное действие. */
+  --mt-anor-100: #f7e4e4;
+  --mt-anor-200: #eec1c3;
+  --mt-anor-400: #d9525c;
+  --mt-anor-500: #c33540;
+  --mt-anor-600: #a81e2d; /* базовый */
+  --mt-anor-700: #8e1824;
+  --mt-anor-800: #6b121b;
+
+  /* Индиго — бухарская краска. Информация, ссылки, тёмные плоскости. */
+  --mt-indigo-100: #e4e6f1;
+  --mt-indigo-200: #c3c8e0;
+  --mt-indigo-400: #5a63a5;
+  --mt-indigo-500: #3a4285;
+  --mt-indigo-700: #22285c; /* базовый */
+  --mt-indigo-800: #171c42;
+
+  /* Урюк — курага. Ожидание, предупреждение, акцент (≤10% площади). */
+  --mt-urik-100: #fbeed9;
+  --mt-urik-200: #f5d9a8;
+  --mt-urik-500: #e8a33d; /* базовый — только плашки и точки */
+  --mt-urik-700: #8a5e08; /* текст: 5.3:1 на каймаке */
+
+  /* Гил — сырцовая глина. Декор, иллюстрации, разделители. */
+  --mt-gil-100: #efe4d8;
+  --mt-gil-300: #dcc9b4;
+  --mt-gil-500: #c2a183; /* базовый */
+  --mt-gil-700: #8a6f55;
+
+  /* Нейтральная шкала — тёплая, построена от каймака к туту. */
+  --mt-n-50: #fbf6ee; /* каймак — основной фон */
+  --mt-n-100: #f3ede3;
+  --mt-n-200: #e6ded1; /* границы */
+  --mt-n-300: #d3c9b9;
+  --mt-n-400: #aea394; /* только декор / disabled */
+  --mt-n-500: #877d70; /* 3.8:1 — только крупный текст */
+  --mt-n-600: #665d53; /* 6.0:1 — второстепенный текст */
+  --mt-n-700: #4a423a;
+  --mt-n-800: #342d27;
+  --mt-n-900: #2a211c; /* тут — основной текст, 14.7:1 */
+
+  /* --- Семантика --------------------------------------------------------- */
+  --mt-success: #1d7a4c;
+  --mt-success-bg: #dff0e5;
+  --mt-success-fg: #14532f;
+
+  --mt-warning: var(--mt-urik-500);
+  --mt-warning-bg: var(--mt-urik-100);
+  --mt-warning-fg: var(--mt-urik-700);
+
+  --mt-error: var(--mt-anor-700);
+  --mt-error-bg: var(--mt-anor-100);
+  --mt-error-fg: #6b121b;
+
+  --mt-info: var(--mt-indigo-700);
+  --mt-info-bg: var(--mt-indigo-100);
+  --mt-info-fg: var(--mt-indigo-800);
+
+  /* --- Статусы бронирования --------------------------------------------- */
+  --mt-status-await: var(--mt-urik-700); /* ожидание оплаты */
+  --mt-status-await-bg: var(--mt-urik-100);
+  --mt-status-await-dot: var(--mt-urik-500);
+
+  --mt-status-ok: var(--mt-success-fg); /* подтверждено */
+  --mt-status-ok-bg: var(--mt-success-bg);
+  --mt-status-ok-dot: var(--mt-success);
+
+  --mt-status-cancel: var(--mt-n-700); /* отменено — нейтральный, не красный */
+  --mt-status-cancel-bg: var(--mt-n-200);
+  --mt-status-cancel-dot: var(--mt-n-500);
+
+  --mt-status-refund: var(--mt-indigo-700); /* возврат */
+  --mt-status-refund-bg: var(--mt-indigo-100);
+  --mt-status-refund-dot: var(--mt-indigo-500);
+
+  /* --- Роли поверхностей ------------------------------------------------- */
+  --mt-bg: var(--mt-n-50);
+  --mt-bg-sunken: var(--mt-n-100);
+  --mt-surface: #ffffff;
+  --mt-surface-alt: var(--mt-n-100);
+  --mt-border: var(--mt-n-200);
+  --mt-border-strong: var(--mt-n-300);
+  --mt-text: var(--mt-n-900);
+  --mt-text-secondary: var(--mt-n-600);
+  --mt-text-muted: var(--mt-n-500);
+  --mt-text-inverse: var(--mt-n-50);
+  --mt-accent: var(--mt-anor-600);
+  --mt-accent-hover: var(--mt-anor-700);
+  --mt-accent-active: var(--mt-anor-800);
+  --mt-accent-fg: #ffffff;
+  --mt-link: var(--mt-indigo-700);
+  --mt-focus: var(--mt-indigo-700);
+
+  /* --- Типографика ------------------------------------------------------- */
+  --mt-font-display: "Alegreya", "Iowan Old Style", "Palatino Linotype", Georgia,
+    "Noto Serif", serif;
+  --mt-font-text: "IBM Plex Sans", "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", Arial, sans-serif;
+  --mt-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Roboto Mono",
+    "Noto Sans Mono", monospace;
+
+  /* Шкала. Кегль/интерлиньяж заданы парой — не подбирать на глаз. */
+  --mt-text-12: 0.75rem;
+  --mt-lh-12: 1rem; /* 16 */
+  --mt-text-14: 0.875rem;
+  --mt-lh-14: 1.25rem; /* 20 */
+  --mt-text-16: 1rem;
+  --mt-lh-16: 1.5rem; /* 24 */
+  --mt-text-18: 1.125rem;
+  --mt-lh-18: 1.75rem; /* 28 */
+  --mt-text-24: 1.5rem;
+  --mt-lh-24: 2rem; /* 32 */
+  --mt-text-32: 2rem;
+  --mt-lh-32: 2.5rem; /* 40 */
+  --mt-text-48: 3rem;
+  --mt-lh-48: 3.5rem; /* 56 */
+  --mt-text-64: 4rem;
+  --mt-lh-64: 4.25rem; /* 68 */
+
+  --mt-weight-regular: 400;
+  --mt-weight-medium: 500;
+  --mt-weight-semibold: 600;
+  --mt-weight-bold: 700;
+
+  --mt-tracking-tight: -0.02em; /* display 32+ */
+  --mt-tracking-normal: 0;
+  --mt-tracking-wide: 0.04em; /* капс, метки статусов */
+
+  /* --- Отступы (шаг 4) --------------------------------------------------- */
+  --mt-space-1: 0.25rem; /* 4 */
+  --mt-space-2: 0.5rem; /* 8 */
+  --mt-space-3: 0.75rem; /* 12 */
+  --mt-space-4: 1rem; /* 16 */
+  --mt-space-5: 1.25rem; /* 20 */
+  --mt-space-6: 1.5rem; /* 24 */
+  --mt-space-8: 2rem; /* 32 */
+  --mt-space-10: 2.5rem; /* 40 */
+  --mt-space-12: 3rem; /* 48 */
+  --mt-space-16: 4rem; /* 64 */
+  --mt-space-20: 5rem; /* 80 */
+
+  /* --- Радиусы. Скупо: форму держит abr-край, а не скругления. ----------- */
+  --mt-radius-sm: 4px; /* инпуты, кнопки, чипы */
+  --mt-radius-md: 8px; /* карточки */
+  --mt-radius-lg: 12px; /* шиты, модалки */
+  --mt-radius-full: 999px; /* только аватары и точки статуса */
+
+  /* --- Тени: тёплые, от тута, не от чёрного ------------------------------ */
+  --mt-shadow-1: 0 1px 2px rgba(42, 33, 28, 0.08);
+  --mt-shadow-2: 0 2px 8px rgba(42, 33, 28, 0.1);
+  --mt-shadow-3: 0 8px 24px rgba(42, 33, 28, 0.14);
+  --mt-ring: 0 0 0 3px rgba(34, 40, 92, 0.35);
+
+  /* --- Тапы и фокус ------------------------------------------------------ */
+  --mt-tap-min: 44px; /* минимальная сторона тап-зоны */
+  --mt-focus-width: 2px;
+  --mt-focus-offset: 2px;
+
+  /* --- Движение --------------------------------------------------------- */
+  --mt-ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --mt-duration-fast: 120ms;
+  --mt-duration: 200ms;
+  --mt-duration-slow: 320ms;
+
+  /* --- Signature: abr-край ----------------------------------------------
+     Ступенчатая кромка иката. Один приём на весь бренд: разделители,
+     кромка ваучера, шапка, паттерн. Плитка 24×8, шаг 3×2.
+     Цвет задаётся через --mt-abr-color (fill внутри data-URI).           */
+  --mt-abr-color: %23a81e2d;
+  --mt-abr-height: 8px;
+  --mt-abr-tile: 24px 8px;
+  --mt-abr-edge: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%23a81e2d" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+  --mt-abr-edge-gil: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%23c2a183" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+  --mt-abr-edge-ink: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%232a211c" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+}
+
+/* ==========================================================================
+   Тёмная тема. Гранат осветляется до --mt-anor-400: на тёмном фоне
+   #a81e2d даёт 2.48:1 и не проходит AA, #d9525c даёт 4.57:1.
+   Переключается атрибутом data-theme на <html> — хост-приложение ставит его
+   само (одна строка JS), чтобы у пользователя оставался ручной выбор темы.
+   ========================================================================== */
+[data-theme="dark"] {
+  --mt-bg: #1b1512;
+  --mt-bg-sunken: #150f0d;
+  --mt-surface: #241c18;
+  --mt-surface-alt: #2e241f;
+  --mt-border: #3b302a;
+  --mt-border-strong: #4f423a;
+  --mt-text: #f3ede3;
+  --mt-text-secondary: #c2b6a6;
+  --mt-text-muted: #9b8e7e;
+  --mt-text-inverse: #1b1512;
+  --mt-accent: var(--mt-anor-400);
+  --mt-accent-hover: #e2707a;
+  --mt-accent-active: #eb8a92;
+  --mt-accent-fg: #24100f;
+  --mt-link: #a8b0e0;
+  --mt-focus: #a8b0e0;
+
+  --mt-success: #4cb27a;
+  --mt-success-bg: #14301f;
+  --mt-success-fg: #a7dfbe;
+  --mt-warning: var(--mt-urik-500);
+  --mt-warning-bg: #33240c;
+  --mt-warning-fg: #f0c882;
+  --mt-error: #e2707a;
+  --mt-error-bg: #3a1418;
+  --mt-error-fg: #f0b3b8;
+  --mt-info: #a8b0e0;
+  --mt-info-bg: #1c1f3d;
+  --mt-info-fg: #c3c8e0;
+
+  --mt-status-await: #f0c882;
+  --mt-status-await-bg: #33240c;
+  --mt-status-await-dot: var(--mt-urik-500);
+  --mt-status-ok: #a7dfbe;
+  --mt-status-ok-bg: #14301f;
+  --mt-status-ok-dot: #4cb27a;
+  --mt-status-cancel: #c2b6a6;
+  --mt-status-cancel-bg: #2e241f;
+  --mt-status-cancel-dot: #9b8e7e;
+  --mt-status-refund: #c3c8e0;
+  --mt-status-refund-bg: #1c1f3d;
+  --mt-status-refund-dot: #a8b0e0;
+
+  --mt-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --mt-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.55);
+  --mt-shadow-3: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --mt-ring: 0 0 0 3px rgba(168, 176, 224, 0.4);
+
+  --mt-abr-color: %23d9525c;
+  --mt-abr-edge: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%23d9525c" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+  --mt-abr-edge-gil: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%238a6f55" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+  --mt-abr-edge-ink: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="8" viewBox="0 0 24 8"><path fill="%23f3ede3" d="M0 8V6h3V4h3V2h3V0h3v2h3v2h3v2h3v2z"/></svg>');
+}
+
+/* ==========================================================================
+   Утилиты, без которых токены не живут
+   ========================================================================== */
+
+/* Цены, даты, номера рейсов и паспортов — всегда табличные цифры,
+   иначе колонка цен «дышит» при пересчёте. */
+.mt-num {
+  font-family: var(--mt-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  letter-spacing: 0;
+}
+
+/* Signature element: ступенчатая кромка. */
+.mt-abr-top,
+.mt-abr-bottom {
+  position: relative;
+}
+.mt-abr-top::before,
+.mt-abr-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--mt-abr-height);
+  background-image: var(--mt-abr-edge);
+  background-size: var(--mt-abr-tile);
+  background-repeat: repeat-x;
+}
+.mt-abr-top::before {
+  top: 0;
+  transform: scaleY(-1);
+}
+.mt-abr-bottom::after {
+  bottom: calc(var(--mt-abr-height) * -1);
+}
+
+/* Видимый фокус — одинаковый во всём продукте. */
+.mt-focusable:focus-visible,
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--mt-focus-width) solid var(--mt-focus);
+  outline-offset: var(--mt-focus-offset);
+  border-radius: var(--mt-radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mt-duration-fast: 0ms;
+    --mt-duration: 0ms;
+    --mt-duration-slow: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
