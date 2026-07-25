@@ -10,7 +10,8 @@
  * is byte-for-byte the static wordmark.
  * ------------------------------------------------------------------ */
 .mt-takeoff{
-  --mt-dur:1.55s;
+  --mt-dur:1.55s;      /* runway roll + climb                */
+  --mt-rise:1.05s;     /* wordmark settle                    */
   --mt-delay:.1s;
   --mt-ease:cubic-bezier(.58,.04,.35,1);
 }
@@ -45,12 +46,21 @@
   55%{transform:translate(-3.818px,-4.628px);animation-timing-function:cubic-bezier(.35,0,.3,1)}
   100%{transform:translate(0px,0px)}
 }
-@keyframes mt-fly-show{0%{opacity:0}9%{opacity:1}98.4%{opacity:1}99.2%{opacity:0}100%{opacity:0}}
-@keyframes mt-plane-land{0%{opacity:0}98.4%{opacity:0}99.2%{opacity:1}100%{opacity:1}}
+/* The two plane copies swap on a single step at the very last instant, so no
+   frame ever shows both at partial alpha (that would read as a flicker). */
+@keyframes mt-fly-show{
+  0%{opacity:0}
+  9%{opacity:1;animation-timing-function:steps(1,jump-end)}
+  100%{opacity:0}
+}
+@keyframes mt-plane-land{
+  0%{opacity:0;animation-timing-function:steps(1,jump-end)}
+  100%{opacity:1}
+}
 
 .mt-takeoff .mt-runway{animation:mt-draw var(--mt-dur) var(--mt-ease) var(--mt-delay) backwards}
 .mt-takeoff .mt-wipe-edge{animation:mt-wipe var(--mt-dur) var(--mt-ease) var(--mt-delay) backwards}
-.mt-takeoff .mt-word{animation:mt-rise 1.05s cubic-bezier(.22,.65,.24,1) var(--mt-delay) backwards}
+.mt-takeoff .mt-word{animation:mt-rise var(--mt-rise) cubic-bezier(.22,.65,.24,1) var(--mt-delay) backwards}
 
 /* The hand-off only exists where the motion path really works; elsewhere
    the static plane simply stays put and the runway still draws. */
